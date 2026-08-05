@@ -3,38 +3,40 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#f5f7ff">
+  <meta name="theme-color" content="#0b1220">
+  <meta name="description" content="Learn how to enable Ad Blocker Safari extensions and start Safari protection.">
   <title>启用 Safari 扩展 · 广告拦截器</title>
   <style>
     :root {
-      color-scheme: light;
-      --bg: #f5f7ff;
-      --card: rgba(255, 255, 255, .86);
-      --text: #172033;
-      --muted: #697185;
-      --blue: #287ff0;
-      --blue-soft: #e7f0ff;
-      --line: rgba(33, 48, 78, .09);
-      --shadow: 0 18px 50px rgba(67, 89, 145, .14);
+      color-scheme: dark;
+      --bg: #0b1220;
+      --card: #172033;
+      --text: #f8fafc;
+      --muted: #b5c0d4;
+      --blue: #2f80ed;
+      --blue-soft: #173a70;
+      --line: #2b3850;
+      --shadow: 0 16px 38px rgba(0, 0, 0, .28);
     }
     * { box-sizing: border-box; }
     body {
       margin: 0;
       min-height: 100vh;
       padding: max(24px, env(safe-area-inset-top)) 18px max(28px, env(safe-area-inset-bottom));
-      background: radial-gradient(circle at 50% -10%, #fff 0, var(--bg) 52%, #eef3ff 100%);
+      background: radial-gradient(circle at 50% -18%, #1c2d49 0, var(--bg) 46%, #070c15 100%);
       color: var(--text);
       font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "PingFang SC", "Helvetica Neue", sans-serif;
       -webkit-font-smoothing: antialiased;
     }
     main { max-width: 560px; margin: 0 auto; }
-    .topbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 0 0 12px; }
-    .back-link, .lang-select { border: 1px solid var(--line); border-radius: 999px; background: var(--card); color: var(--muted); font: inherit; font-size: 12px; padding: 8px 12px; text-decoration: none; }
+    .topbar { display: flex; align-items: center; justify-content: flex-end; gap: 12px; margin: 0 0 12px; }
+    .lang-select { border: 1px solid var(--line); border-radius: 999px; background: var(--card); color: var(--muted); font: inherit; font-size: 12px; padding: 8px 12px; text-decoration: none; }
     .lang-select { appearance: none; -webkit-appearance: none; padding-right: 28px; background-image: linear-gradient(45deg, transparent 50%, var(--muted) 50%), linear-gradient(135deg, var(--muted) 50%, transparent 50%); background-position: calc(100% - 13px) 11px, calc(100% - 9px) 11px; background-size: 4px 4px, 4px 4px; background-repeat: no-repeat; }
     .page-nav { display: flex; gap: 8px; overflow-x: auto; padding: 2px 2px 12px; scrollbar-width: none; }
     .page-nav::-webkit-scrollbar { display: none; }
-    .page-nav a { flex: 0 0 auto; padding: 8px 12px; border-radius: 999px; color: var(--muted); background: rgba(255,255,255,.45); border: 1px solid transparent; font-size: 12px; text-decoration: none; }
-    .page-nav a.active { color: var(--blue); background: var(--blue-soft); border-color: rgba(40,127,240,.16); font-weight: 650; }
+    .page-nav a { flex: 0 0 auto; padding: 8px 12px; border-radius: 999px; color: #c0cada; background: #202b3e; border: 1px solid #344158; font-size: 12px; text-decoration: none; }
+    .page-nav a.active { color: #ffffff; background: var(--blue); border-color: var(--blue); font-weight: 650; box-shadow: 0 5px 12px rgba(20, 110, 245, .2); }
+    a:focus-visible, select:focus-visible, summary:focus-visible { outline: 3px solid #70b7ff; outline-offset: 3px; }
     .hero { text-align: center; padding: 18px 8px 22px; }
     .logo {
       width: 72px; height: 72px; margin: 0 auto 18px; border-radius: 23px;
@@ -44,6 +46,7 @@
     }
     h1 { margin: 0; font-size: 28px; letter-spacing: -.5px; }
     .subtitle { margin: 10px auto 0; color: var(--muted); font-size: 16px; line-height: 1.55; }
+    .version-note { display: inline-block; margin-top: 12px; padding: 7px 11px; border: 1px solid #31527e; border-radius: 999px; color: #b9d7ff; background: #152b4b; font-size: 12px; line-height: 1.35; }
     .notice, .step, .fallback {
       border: 1px solid var(--line); border-radius: 24px; background: var(--card);
       box-shadow: var(--shadow); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
@@ -57,12 +60,21 @@
     .number { width: 42px; height: 42px; border-radius: 14px; display: grid; place-items: center; background: var(--blue-soft); color: var(--blue); font-size: 18px; font-weight: 750; }
     .step h2 { margin: 1px 0 7px; font-size: 17px; }
     .step p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.6; }
-    .path { display: inline-flex; margin-top: 10px; padding: 7px 10px; border-radius: 9px; background: #f0f3f9; color: #4e5b72; font-size: 13px; }
+    .step-visual { display: block; width: min(100%, 250px); margin: 16px auto 0; border: 1px solid var(--line); border-radius: 18px; box-shadow: 0 10px 24px rgba(0,0,0,.2); }
+    .path { display: inline-flex; margin-top: 10px; padding: 7px 10px; border-radius: 9px; background: #243149; color: #dbe5f5; font-size: 13px; }
     .fallback { margin-top: 16px; padding: 18px; }
     .fallback h2 { margin: 0 0 8px; font-size: 16px; }
     .fallback p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.55; }
-    .done { margin-top: 18px; padding: 17px 18px; border-radius: 20px; background: #eaf8f2; color: #236d51; font-size: 14px; line-height: 1.55; }
-    footer { padding: 22px 8px 0; text-align: center; color: #8a93a6; font-size: 12px; }
+    .done { margin-top: 18px; padding: 17px 18px; border: 1px solid #146b4a; border-radius: 20px; background: #0d3b2b; color: #a7f3d0; font-size: 14px; line-height: 1.55; }
+    .after-setup, .faq { margin-top: 16px; padding: 18px; border: 1px solid var(--line); border-radius: 22px; background: var(--card); box-shadow: var(--shadow); }
+    .after-setup h2, .faq h2 { margin: 0 0 10px; font-size: 16px; }
+    .after-setup ol { margin: 0; padding-left: 22px; color: var(--muted); font-size: 14px; line-height: 1.75; }
+    .faq details { border-top: 1px solid var(--line); padding: 11px 0; }
+    .faq details:first-of-type { border-top: 0; padding-top: 0; }
+    .faq summary { cursor: pointer; color: var(--text); font-size: 14px; font-weight: 650; }
+    .faq details p { margin: 7px 0 0; color: var(--muted); font-size: 14px; line-height: 1.55; }
+    .guide-meta { margin-top: 12px; color: #718096; font-size: 11px; }
+    footer { padding: 22px 8px 0; text-align: center; color: #8996ab; font-size: 12px; }
     .footer-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
     .footer-links a { color: inherit; }
     @media (max-width: 380px) {
@@ -70,19 +82,21 @@
       .step { grid-template-columns: 36px 1fr; gap: 10px; padding: 15px; }
       .number { width: 36px; height: 36px; border-radius: 12px; font-size: 16px; }
       h1 { font-size: 25px; }
-      .back-link, .lang-select { padding-left: 9px; padding-right: 9px; }
+      .lang-select { padding-left: 9px; padding-right: 9px; }
     }
     @media (prefers-color-scheme: dark) {
-      :root { color-scheme: dark; --bg: #111521; --card: rgba(31, 38, 55, .86); --text: #f4f6fc; --muted: #aab3c5; --blue-soft: #1c355e; --line: rgba(255,255,255,.1); --shadow: 0 18px 50px rgba(0,0,0,.25); }
-      .path { background: #293246; color: #d3dbeb; }
-      .done { background: #15392d; color: #a8e1c8; }
+      :root { color-scheme: dark; --bg: #0b1220; --card: #172033; --text: #f8fafc; --muted: #b5c0d4; --blue-soft: #173a70; --line: #2b3850; --shadow: 0 16px 38px rgba(0,0,0,.28); }
+      body { background: radial-gradient(circle at 50% -18%, #1c2d49 0, var(--bg) 46%, #070c15 100%); }
+      .page-nav a { color: #c0cada; background: #202b3e; border-color: #344158; }
+      .page-nav a.active { color: #ffffff; background: #2f80ed; border-color: #2f80ed; }
+      .path { background: #243149; color: #dbe5f5; }
+      .done { border-color: #146b4a; background: #0d3b2b; color: #a7f3d0; }
     }
   </style>
 </head>
 <body>
   <main>
     <div class="topbar">
-      <a class="back-link" id="back-link" href="adblocker://home">‹ <span data-i18n="back">返回 App</span></a>
       <select class="lang-select" id="language-select" aria-label="Language">
         <option value="zh">中文</option>
         <option value="en">English</option>
@@ -106,6 +120,8 @@
       <div class="logo" aria-hidden="true">⌁</div>
       <h1 id="page-title">启用 Safari 扩展</h1>
       <p class="subtitle" id="page-subtitle">只需几步，即可开启广告过滤和 Safari 浏览防护。</p>
+      <div class="version-note" id="version-note">Guide visuals use iOS 26. Other versions may look different; follow the menus shown on your device.</div>
+      <div class="guide-meta" id="step-progress">3 steps · Updated 2026-08</div>
     </header>
 
     <section class="notice">
@@ -124,6 +140,14 @@
     </section>
 
     <div class="done" id="done">提示：Content Blocker 负责基础广告过滤，Safari Web Extension 负责 YouTube 等动态页面增强处理。两者可以分别开启。</div>
+    <section class="after-setup" aria-labelledby="after-setup-title">
+      <h2 id="after-setup-title">After setup</h2>
+      <ol id="after-setup-list"></ol>
+    </section>
+    <section class="faq" aria-labelledby="faq-title">
+      <h2 id="faq-title">Common questions</h2>
+      <div id="faq-items"></div>
+    </section>
     <footer>
       <span id="footer-label">广告拦截器 · Safari 防护引导</span>
       <div class="footer-links">
@@ -134,6 +158,7 @@
   <script>
     (() => {
       const params = new URLSearchParams(location.search);
+      const guideUpdatedAt = '2026-08';
       const requestedLanguage = params.get('lang') || params.get('language');
       const supportedLanguages = ['zh', 'en', 'ja', 'ko', 'es', 'fr', 'de', 'pt-BR', 'it', 'ru', 'ar', 'hi', 'nl', 'tr', 'vi'];
       // 上架引导页默认使用英文，避免系统语言与 App 语言不一致时出现意外切换。
@@ -316,24 +341,119 @@
         content.subtitle[language] = general.subtitle;
       }
 
+      const faqCopy = {
+        en: { title: 'Common questions', items: [['Why do I need to enable two extensions?', 'Content Blocker handles basic filtering. Safari Web Extension adds webpage element selection and dynamic-page enhancements.'], ['The extension does not appear. What should I do?', 'Open Settings → Safari → Extensions, then look for this app. Restart Safari only if the extension list has not refreshed.'], ['Why are some ads still visible?', 'Some pages require a reload after enabling protection. You can also check rule categories and site allow settings in the main app.']] },
+        zh: { title: '常见问题', items: [['为什么需要开启两个扩展？', 'Content Blocker 负责基础过滤，Safari Web Extension 负责网页元素选择和动态页面增强。'], ['找不到扩展怎么办？', '打开“设置 → Safari → 扩展”查找本应用。如果列表没有刷新，再重新打开 Safari。'], ['为什么仍然会看到部分广告？', '开启保护后部分页面需要刷新。也可以在主 App 中检查规则分类和网站放行设置。']] },
+        ja: { title: 'よくある質問', items: [['なぜ2つの拡張機能を有効にする必要がありますか？', 'Content Blockerは基本的なフィルタリングを行い、Safari Web拡張は要素選択と動的ページの拡張を行います。'], ['拡張機能が表示されない場合は？', '設定 → Safari → 拡張機能を開いてこのアプリを探してください。リストが更新されない場合はSafariを再起動してください。'], ['広告が一部表示されるのはなぜですか？', '保護を有効にした後、ページの再読み込みが必要な場合があります。Appでルール分類とサイト許可も確認してください。']] },
+        ko: { title: '자주 묻는 질문', items: [['왜 두 확장 프로그램을 모두 켜야 하나요?', 'Content Blocker는 기본 필터링을 담당하고 Safari Web Extension은 요소 선택과 동적 페이지 기능을 제공합니다.'], ['확장 프로그램이 보이지 않으면 어떻게 하나요?', '설정 → Safari → 확장 프로그램에서 이 앱을 찾으세요. 목록이 갱신되지 않으면 Safari를 다시 시작하세요.'], ['일부 광고가 계속 보이는 이유는 무엇인가요?', '보호를 켠 뒤 페이지를 새로 고쳐야 할 수 있습니다. 앱에서 규칙 분류와 사이트 허용 설정도 확인하세요.']] },
+        es: { title: 'Preguntas frecuentes', items: [['¿Por qué debo activar dos extensiones?', 'Content Blocker gestiona el filtrado básico y Safari Web Extension añade la selección de elementos y mejoras para páginas dinámicas.'], ['¿Qué hago si no aparece la extensión?', 'Abre Ajustes → Safari → Extensiones y busca esta app. Reinicia Safari si la lista no se actualiza.'], ['¿Por qué algunos anuncios siguen visibles?', 'Algunas páginas necesitan recargarse después de activar la protección. También puedes revisar las categorías de reglas y los sitios permitidos.']] },
+        fr: { title: 'Questions fréquentes', items: [['Pourquoi activer deux extensions ?', 'Content Blocker assure le filtrage de base. Safari Web Extension ajoute la sélection d’éléments et les améliorations des pages dynamiques.'], ['Que faire si l’extension n’apparaît pas ?', 'Ouvrez Réglages → Safari → Extensions et recherchez cette app. Redémarrez Safari si la liste ne se met pas à jour.'], ['Pourquoi certaines publicités restent-elles visibles ?', 'Certaines pages doivent être rechargées après l’activation de la protection. Vérifiez aussi les catégories de règles et les sites autorisés.']] },
+        de: { title: 'Häufige Fragen', items: [['Warum müssen zwei Erweiterungen aktiviert werden?', 'Content Blocker übernimmt die grundlegende Filterung. Safari Web Extension ergänzt Elementauswahl und Funktionen für dynamische Seiten.'], ['Was tun, wenn die Erweiterung nicht angezeigt wird?', 'Öffnen Sie Einstellungen → Safari → Erweiterungen und suchen Sie diese App. Starten Sie Safari neu, wenn die Liste nicht aktualisiert wurde.'], ['Warum sind manche Anzeigen noch sichtbar?', 'Nach dem Aktivieren muss die Seite möglicherweise neu geladen werden. Prüfen Sie außerdem Regelkategorien und erlaubte Websites.']] },
+        'pt-BR': { title: 'Perguntas frequentes', items: [['Por que preciso ativar duas extensões?', 'O Content Blocker faz a filtragem básica. A Safari Web Extension adiciona seleção de elementos e melhorias para páginas dinâmicas.'], ['O que fazer se a extensão não aparecer?', 'Abra Ajustes → Safari → Extensões e procure este app. Reinicie o Safari se a lista não for atualizada.'], ['Por que alguns anúncios ainda aparecem?', 'Algumas páginas precisam ser recarregadas após ativar a proteção. Verifique também as categorias de regras e os sites permitidos.']] },
+        it: { title: 'Domande frequenti', items: [['Perché devo attivare due estensioni?', 'Content Blocker gestisce il filtraggio di base. Safari Web Extension aggiunge la selezione degli elementi e funzioni per le pagine dinamiche.'], ['Cosa fare se l’estensione non compare?', 'Apri Impostazioni → Safari → Estensioni e cerca questa app. Riavvia Safari se l’elenco non si aggiorna.'], ['Perché alcuni annunci sono ancora visibili?', 'Dopo aver attivato la protezione potrebbe essere necessario ricaricare la pagina. Controlla anche le categorie delle regole e i siti consentiti.']] },
+        ru: { title: 'Частые вопросы', items: [['Зачем включать два расширения?', 'Content Blocker выполняет базовую фильтрацию, а Safari Web Extension добавляет выбор элементов и обработку динамических страниц.'], ['Что делать, если расширение не отображается?', 'Откройте Настройки → Safari → Расширения и найдите это приложение. Если список не обновился, перезапустите Safari.'], ['Почему некоторые объявления всё ещё видны?', 'После включения защиты некоторым страницам требуется перезагрузка. Также проверьте категории правил и разрешённые сайты.']] },
+        ar: { title: 'الأسئلة الشائعة', items: [['لماذا يجب تفعيل إضافتين؟', 'يتولى Content Blocker التصفية الأساسية، بينما تضيف Safari Web Extension اختيار العناصر وتحسين الصفحات الديناميكية.'], ['ماذا أفعل إذا لم تظهر الإضافة؟', 'افتح الإعدادات ← Safari ← الإضافات وابحث عن هذا التطبيق. أعد تشغيل Safari إذا لم تتحدث القائمة.'], ['لماذا لا تزال بعض الإعلانات ظاهرة؟', 'قد تحتاج بعض الصفحات إلى إعادة التحميل بعد تفعيل الحماية. تحقق أيضاً من فئات القواعد والمواقع المسموح بها.']] },
+        hi: { title: 'अक्सर पूछे जाने वाले प्रश्न', items: [['दो एक्सटेंशन चालू करना क्यों ज़रूरी है?', 'Content Blocker बुनियादी फ़िल्टरिंग करता है। Safari Web Extension वेब तत्व चुनने और डायनेमिक पेज सुधारने की सुविधा देता है।'], ['एक्सटेंशन दिखाई न दे तो क्या करें?', 'सेटिंग्स → Safari → एक्सटेंशन खोलकर इस ऐप को खोजें। सूची अपडेट न हो तो Safari को फिर खोलें।'], ['कुछ विज्ञापन अभी भी क्यों दिखते हैं?', 'सुरक्षा चालू करने के बाद कुछ पेजों को रीफ्रेश करना पड़ता है। ऐप में नियम श्रेणियाँ और अनुमत साइटें भी जाँचें।']] },
+        nl: { title: 'Veelgestelde vragen', items: [['Waarom moet ik twee extensies inschakelen?', 'Content Blocker verzorgt de basisfiltering. Safari Web Extension voegt elementselectie en ondersteuning voor dynamische pagina’s toe.'], ['Wat moet ik doen als de extensie niet verschijnt?', 'Open Instellingen → Safari → Extensies en zoek deze app. Herstart Safari als de lijst niet is vernieuwd.'], ['Waarom zijn sommige advertenties nog zichtbaar?', 'Sommige pagina’s moeten na het inschakelen van bescherming opnieuw worden geladen. Controleer ook regels en toegestane sites.']] },
+        tr: { title: 'Sık sorulan sorular', items: [['Neden iki uzantıyı etkinleştirmeliyim?', 'Content Blocker temel filtrelemeyi yapar. Safari Web Extension ise öğe seçimi ve dinamik sayfa geliştirmeleri sağlar.'], ['Uzantı görünmüyorsa ne yapmalıyım?', 'Ayarlar → Safari → Uzantılar bölümünü açıp bu uygulamayı bulun. Liste yenilenmediyse Safari’yi yeniden başlatın.'], ['Bazı reklamlar neden hâlâ görünüyor?', 'Koruma etkinleştirildikten sonra bazı sayfaların yenilenmesi gerekir. Kural kategorilerini ve izin verilen siteleri de kontrol edin.']] },
+        vi: { title: 'Câu hỏi thường gặp', items: [['Tại sao cần bật hai tiện ích?', 'Content Blocker xử lý việc lọc cơ bản. Safari Web Extension bổ sung chọn phần tử và cải thiện các trang động.'], ['Nếu không thấy tiện ích thì phải làm gì?', 'Mở Cài đặt → Safari → Tiện ích và tìm ứng dụng này. Khởi động lại Safari nếu danh sách chưa cập nhật.'], ['Tại sao một số quảng cáo vẫn hiển thị?', 'Một số trang cần được tải lại sau khi bật bảo vệ. Bạn cũng có thể kiểm tra danh mục quy tắc và các trang được cho phép trong ứng dụng.']] }
+      }[language] || {
+        title: 'Common questions', items: []
+      };
+
+      const afterSetupCopy = {
+        en: { title: 'After setup', items: ['Return to Ad Blocker.', 'Tap “Check again” and enable protection.', 'Reload the Safari page.'] },
+        zh: { title: '完成设置后', items: ['返回广告拦截器。', '点击“重新检测”并开启保护。', '刷新 Safari 页面。'] },
+        ja: { title: '設定後の操作', items: ['広告ブロッカーに戻ります。', '「再確認」をタップして保護を有効にします。', 'Safariのページを再読み込みします。'] },
+        ko: { title: '설정 후 할 일', items: ['광고 차단기로 돌아갑니다.', '“다시 확인”을 탭하고 보호를 켭니다.', 'Safari 페이지를 새로 고칩니다.'] },
+        es: { title: 'Después de la configuración', items: ['Vuelve a Bloqueador.', 'Toca “Comprobar de nuevo” y activa la protección.', 'Recarga la página de Safari.'] },
+        fr: { title: 'Après la configuration', items: ['Revenez dans le bloqueur.', 'Touchez « Vérifier à nouveau » et activez la protection.', 'Rechargez la page Safari.'] },
+        de: { title: 'Nach der Einrichtung', items: ['Kehren Sie zum Werbeblocker zurück.', 'Tippen Sie auf „Erneut prüfen“ und aktivieren Sie den Schutz.', 'Laden Sie die Safari-Seite neu.'] },
+        'pt-BR': { title: 'Depois da configuração', items: ['Volte ao bloqueador.', 'Toque em “Verificar novamente” e ative a proteção.', 'Recarregue a página do Safari.'] },
+        it: { title: 'Dopo la configurazione', items: ['Torna al blocco pubblicità.', 'Tocca “Controlla di nuovo” e attiva la protezione.', 'Ricarica la pagina di Safari.'] },
+        ru: { title: 'После настройки', items: ['Вернитесь в блокировщик.', 'Нажмите «Проверить снова» и включите защиту.', 'Перезагрузите страницу Safari.'] },
+        ar: { title: 'بعد الإعداد', items: ['عد إلى مانع الإعلانات.', 'اضغط «تحقق مرة أخرى» وفعّل الحماية.', 'أعد تحميل صفحة Safari.'] },
+        hi: { title: 'सेटअप के बाद', items: ['ऐड ब्लॉकर पर लौटें।', '“फिर जाँचें” दबाकर सुरक्षा चालू करें।', 'Safari पेज को रीफ्रेश करें।'] },
+        nl: { title: 'Na de installatie', items: ['Ga terug naar de advertentieblokker.', 'Tik op “Opnieuw controleren” en schakel bescherming in.', 'Laad de Safari-pagina opnieuw.'] },
+        tr: { title: 'Kurulumdan sonra', items: ['Reklam engelleyiciye dönün.', '“Tekrar kontrol et” seçeneğine dokunup korumayı etkinleştirin.', 'Safari sayfasını yenileyin.'] },
+        vi: { title: 'Sau khi thiết lập', items: ['Quay lại trình chặn quảng cáo.', 'Nhấn “Kiểm tra lại” và bật chế độ bảo vệ.', 'Tải lại trang Safari.'] }
+      }[language] || {
+        title: 'After setup', items: ['Return to Ad Blocker.', 'Tap “Check again” and enable protection.', 'Reload the Safari page.']
+      };
+
+      const versionNoteCopy = {
+        en: 'Guide visuals use iOS 26. Other versions may look different; follow the menus shown on your device.',
+        zh: '当前示意图以 iOS 26 为准。其他系统版本可能略有不同，请以设备实际显示的菜单为准。',
+        ja: 'このガイドの画像はiOS 26を基準にしています。他のバージョンでは表示が異なる場合があるため、端末に表示されるメニューに従ってください。',
+        ko: '이 가이드 이미지는 iOS 26을 기준으로 합니다. 다른 버전에서는 화면이 다를 수 있으므로 기기에 표시되는 메뉴를 따라 진행하세요.',
+        es: 'Las imágenes usan iOS 26 como referencia. Otras versiones pueden verse distintas; sigue los menús que aparecen en tu dispositivo.',
+        fr: 'Les visuels de ce guide utilisent iOS 26. Les autres versions peuvent différer ; suivez les menus affichés sur votre appareil.',
+        de: 'Die Abbildungen basieren auf iOS 26. Andere Versionen können abweichen; folgen Sie den Menüs auf Ihrem Gerät.',
+        'pt-BR': 'As imagens usam o iOS 26 como referência. Outras versões podem ser diferentes; siga os menus exibidos no seu dispositivo.',
+        it: 'Le immagini si basano su iOS 26. Le altre versioni possono differire: segui i menu mostrati sul dispositivo.',
+        ru: 'Иллюстрации в руководстве основаны на iOS 26. В других версиях интерфейс может отличаться — следуйте меню на своём устройстве.',
+        ar: 'تعتمد صور هذا الدليل على iOS 26. قد تختلف الإصدارات الأخرى؛ اتبع القوائم الظاهرة على جهازك.',
+        hi: 'इस गाइड के चित्र iOS 26 पर आधारित हैं। अन्य संस्करण अलग दिख सकते हैं; अपने डिवाइस पर दिखने वाले मेनू का पालन करें।',
+        nl: 'De afbeeldingen in deze gids zijn gebaseerd op iOS 26. Andere versies kunnen verschillen; volg de menu’s op je apparaat.',
+        tr: 'Bu kılavuzdaki görseller iOS 26 temel alınarak hazırlanmıştır. Diğer sürümler farklı görünebilir; cihazınızdaki menüleri izleyin.',
+        vi: 'Hình minh họa trong hướng dẫn dùng iOS 26 làm chuẩn. Các phiên bản khác có thể khác nhau; hãy làm theo menu hiển thị trên thiết bị.'
+      }[language] || 'Guide visuals use iOS 26. Other versions may look different; follow the menus shown on your device.';
+
+      const doneCopy = {
+        en: 'Tip: Content Blocker handles basic filtering, while Safari Web Extension handles element selection and dynamic pages. They can be enabled separately.',
+        zh: '提示：Content Blocker 负责基础广告过滤，Safari Web Extension 负责网页元素选择和动态页面增强。两者可以分别开启。',
+        ja: 'ヒント：Content Blockerは基本の広告を処理し、Safari Web拡張は要素選択と動的ページを強化します。',
+        ko: '팁: Content Blocker는 기본 필터링을 담당하고 Safari Web Extension은 요소 선택과 동적 페이지를 지원합니다. 두 기능은 각각 켤 수 있습니다.',
+        es: 'Consejo: Content Blocker gestiona el filtrado básico y Safari Web Extension la selección de elementos y las páginas dinámicas. Se pueden activar por separado.',
+        fr: 'Astuce : Content Blocker assure le filtrage de base, tandis que Safari Web Extension gère la sélection d’éléments et les pages dynamiques. Ils peuvent être activés séparément.',
+        de: 'Tipp: Content Blocker übernimmt die grundlegende Filterung, Safari Web Extension die Elementauswahl und dynamische Seiten. Beide können getrennt aktiviert werden.',
+        'pt-BR': 'Dica: o Content Blocker cuida da filtragem básica, enquanto a Safari Web Extension cuida da seleção de elementos e das páginas dinâmicas. Eles podem ser ativados separadamente.',
+        it: 'Suggerimento: Content Blocker gestisce il filtraggio di base, mentre Safari Web Extension gestisce la selezione degli elementi e le pagine dinamiche. Possono essere attivati separatamente.',
+        ru: 'Совет: Content Blocker выполняет базовую фильтрацию, а Safari Web Extension обрабатывает выбор элементов и динамические страницы. Их можно включать отдельно.',
+        ar: 'نصيحة: يتولى Content Blocker التصفية الأساسية، بينما تتولى Safari Web Extension اختيار العناصر والصفحات الديناميكية. يمكن تفعيلهما بشكل منفصل.',
+        hi: 'सुझाव: Content Blocker बुनियादी फ़िल्टरिंग करता है, जबकि Safari Web Extension तत्व चयन और डायनेमिक पेज संभालता है। दोनों को अलग-अलग चालू किया जा सकता है।',
+        nl: 'Tip: Content Blocker verzorgt de basisfiltering, terwijl Safari Web Extension elementselectie en dynamische pagina’s ondersteunt. Ze kunnen afzonderlijk worden ingeschakeld.',
+        tr: 'İpucu: Content Blocker temel filtrelemeyi, Safari Web Extension ise öğe seçimini ve dinamik sayfaları yönetir. İkisi ayrı ayrı etkinleştirilebilir.',
+        vi: 'Mẹo: Content Blocker xử lý việc lọc cơ bản, còn Safari Web Extension xử lý chọn phần tử và các trang động. Hai tiện ích có thể được bật riêng.'
+      }[language] || 'Tip: Content Blocker handles basic filtering, while Safari Web Extension handles element selection and dynamic pages. They can be enabled separately.';
+
+      const stepProgressCopy = {
+        en: 'steps · Updated', zh: '个步骤 · 更新于', ja: 'ステップ · 更新日', ko: '단계 · 업데이트', es: 'pasos · Actualizado', fr: 'étapes · Mis à jour', de: 'Schritte · Aktualisiert', 'pt-BR': 'etapas · Atualizado', it: 'passaggi · Aggiornato', ru: 'шага · Обновлено', ar: 'خطوات · آخر تحديث', hi: 'चरण · अपडेट', nl: 'stappen · Bijgewerkt', tr: 'adım · Güncelleme', vi: 'bước · Cập nhật'
+      }[language] || 'steps · Updated';
+
       const text = (item) => item[language] || item.en || item.zh;
       const stepText = (zh, en, ja) => ({ zh, en, ja })[language] || en || zh;
       document.documentElement.lang = language === 'zh' ? 'zh-CN' : language;
+      document.documentElement.dir = language === 'ar' ? 'rtl' : 'ltr';
       document.title = text(content.title) + ' · Ad Blocker';
       document.querySelector('#page-title').textContent = text(content.title);
       document.querySelector('#page-subtitle').textContent = text(content.subtitle);
+      const versionNote = document.querySelector('#version-note');
+      versionNote.textContent = versionNoteCopy;
+      versionNote.hidden = pageKey !== 'ios';
       document.querySelector('#notice-title').textContent = copy.noticeTitle;
       document.querySelector('#notice-body').textContent = copy.noticeBody;
       document.querySelector('#fallback-title').textContent = copy.fallbackTitle;
       document.querySelector('#fallback-body').textContent = copy.fallbackBody;
-      document.querySelector('#done').textContent = language === 'zh'
-        ? '提示：Content Blocker 负责基础广告过滤，Safari Web Extension 负责网页元素选择和动态页面增强。两者可以分别开启。'
-        : language === 'ja'
-          ? 'ヒント：Content Blockerは基本の広告を処理し、Safari Web拡張は要素選択と動的ページを強化します。'
-          : 'Tip: Content Blocker handles basic filtering, while Safari Web Extension handles element selection and dynamic pages. They can be enabled separately.';
+      document.querySelector('#done').textContent = doneCopy;
       document.querySelector('#footer-label').textContent = copy.footer;
       document.querySelectorAll('[data-i18n]').forEach((node) => { node.textContent = copy[node.dataset.i18n]; });
       document.querySelector('#language-select').value = language;
+      document.querySelector('#step-progress').textContent = `${content.steps.length} ${stepProgressCopy} ${guideUpdatedAt}`;
+      document.querySelector('#faq-title').textContent = faqCopy.title;
+      const faqItems = document.querySelector('#faq-items');
+      faqCopy.items.forEach(([question, answer]) => {
+        const detail = document.createElement('details');
+        detail.innerHTML = `<summary>${question}</summary><p>${answer}</p>`;
+        faqItems.appendChild(detail);
+      });
+      document.querySelector('#after-setup-title').textContent = afterSetupCopy.title;
+      const afterSetupList = document.querySelector('#after-setup-list');
+      afterSetupCopy.items.forEach((item) => {
+        const listItem = document.createElement('li');
+        listItem.textContent = item;
+        afterSetupList.appendChild(listItem);
+      });
 
       const steps = document.querySelector('#steps');
       content.steps.forEach((step, index) => {
@@ -341,6 +461,14 @@
         article.className = 'step';
         const translatedStep = general?.steps[index];
         article.innerHTML = `<div class="number">${index + 1}</div><div><h2>${translatedStep?.[0] || stepText(step[0], step[1], step[2])}</h2><p>${translatedStep?.[1] || stepText(step[3], step[4], step[4])}</p></div>`;
+        if (pageKey === 'ios') {
+          const visual = document.createElement('img');
+          visual.className = 'step-visual';
+          visual.loading = 'lazy';
+          visual.src = `guide_assets/step-${index + 1}-${['page-menu', 'extensions', 'protected'][index]}.png`;
+          visual.alt = `${stepText(step[0], step[1], step[2])} illustration`;
+          article.querySelector('div:last-child').appendChild(visual);
+        }
         steps.appendChild(article);
       });
 

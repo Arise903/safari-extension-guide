@@ -3,228 +3,1132 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>隐私政策 / Privacy Policy — 广告拦截器 (Ad Blocker)</title>
+<title>隐私政策 / Privacy Policy — Ad Blocker</title>
 <style>
   :root{
-    --bg:#ffffff;--fg:#1f2328;--muted:#57606a;--line:#d0d7de;
-    --accent:#1a73e8;--accent-soft:#e8f0fe;--card:#f6f8fa;
+    --bg:#f4f6fb;--surface:#ffffff;--fg:#1f2430;--muted:#5b6473;--line:#e6e9f0;
+    --accent:#3b5bdb;--accent-2:#5c7cfa;--accent-soft:#eef2ff;--accent-deep:#1c2e6b;
+    --ok:#0f9d58;--ok-soft:#e6f6ed;--shadow:0 10px 30px rgba(28,46,107,.08);
+    --radius:16px;
   }
-  *{box-sizing:border-box}
-  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue","PingFang SC","Microsoft YaHei",sans-serif;
-    background:var(--bg);color:var(--fg);line-height:1.7;font-size:16px}
-  .wrap{max-width:820px;margin:0 auto;padding:32px 20px 80px}
-  header{border-bottom:1px solid var(--line);padding-bottom:20px;margin-bottom:28px}
-  h1{font-size:26px;margin:0 0 6px}
-  .sub{color:var(--muted);font-size:14px}
+  *{box-sizing:border-box;scroll-behavior:smooth}
+  html,body{margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue","PingFang SC","Microsoft YaHei",sans-serif;
+    background:linear-gradient(180deg,#eef2ff 0%,var(--bg) 220px);color:var(--fg);line-height:1.75;font-size:16px;-webkit-font-smoothing:antialiased}
+  .hero{background:linear-gradient(135deg,var(--accent-deep) 0%,var(--accent) 55%,var(--accent-2) 100%);
+    color:#fff;padding:38px 0 30px;box-shadow:var(--shadow)}
+  .hero-inner{max-width:980px;margin:0 auto;padding:0 20px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+  .logo{flex:0 0 auto;width:58px;height:58px;border-radius:14px;background:rgba(255,255,255,.16);
+    display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px);border:1px solid rgba(255,255,255,.3)}
+  .logo svg{width:34px;height:34px}
+  .hero h1{margin:0;font-size:25px;font-weight:700;letter-spacing:.3px}
+  .hero .sub{margin-top:4px;font-size:14px;opacity:.9}
   .meta{margin-top:14px;display:flex;flex-wrap:wrap;gap:8px}
-  .pill{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px 12px;font-size:13px;color:var(--muted)}
-  .toggle{position:sticky;top:0;background:rgba(255,255,255,.92);backdrop-filter:blur(6px);
-    border:1px solid var(--line);border-radius:12px;padding:8px;margin:0 0 24px;display:flex;gap:8px;justify-content:center;z-index:5}
-  .toggle button{flex:1;max-width:160px;border:1px solid var(--line);background:#fff;color:var(--fg);
-    padding:10px 0;border-radius:8px;font-size:14px;cursor:pointer;transition:.15s}
-  .toggle button.active{background:var(--accent);color:#fff;border-color:var(--accent)}
-  section{margin:0 0 28px}
-  h2{font-size:20px;margin:0 0 12px;padding-left:10px;border-left:4px solid var(--accent)}
-  h3{font-size:16px;margin:18px 0 8px}
-  p{margin:0 0 12px}
-  ul{margin:0 0 12px;padding-left:22px}
-  li{margin:4px 0}
-  table{width:100%;border-collapse:collapse;margin:10px 0 16px;font-size:14px}
-  th,td{border:1px solid var(--line);padding:9px 11px;text-align:left;vertical-align:top}
-  th{background:var(--card);font-weight:600}
-  code{background:var(--card);border:1px solid var(--line);border-radius:5px;padding:1px 6px;font-size:13px}
-  .note{background:var(--accent-soft);border:1px solid #bcd3fb;border-radius:10px;padding:12px 16px;font-size:14px;color:#0b57d0}
-  .lang{display:none}
-  .lang.show{display:block}
-  footer{margin-top:40px;border-top:1px solid var(--line);padding-top:18px;color:var(--muted);font-size:13px}
-  @media (max-width:560px){.wrap{padding:20px 14px 60px}h1{font-size:22px}table{font-size:13px;display:block;overflow-x:auto}}
+  .pill{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28);border-radius:999px;
+    padding:5px 13px;font-size:12.5px;color:#fff;backdrop-filter:blur(4px)}
+
+  .layout{max-width:980px;margin:-20px auto 0;padding:0 20px 70px;display:grid;grid-template-columns:1fr 220px;gap:26px;align-items:start}
+  @media (max-width:860px){.layout{grid-template-columns:1fr}}
+
+  .main{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:30px 30px 34px;min-width:0}
+
+  .toc{position:sticky;top:16px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    box-shadow:var(--shadow);padding:16px 14px;font-size:13.5px}
+  .toc h4{margin:0 0 10px;font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+  .toc a{display:block;color:var(--fg);text-decoration:none;padding:6px 10px;border-radius:8px;line-height:1.35;transition:.15s}
+  .toc a:hover{background:var(--accent-soft);color:var(--accent)}
+  .toc a.active{background:var(--accent);color:#fff;font-weight:600}
+  @media (max-width:860px){.toc{display:none}}
+
+  .topbar{position:sticky;top:0;z-index:20;background:rgba(244,246,251,.82);backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);padding:10px 0}
+  .topbar-inner{max-width:980px;margin:0 auto;padding:0 20px;display:flex;align-items:center;gap:12px}
+  .topbar .brand{font-weight:700;color:var(--accent-deep);font-size:15px;display:flex;align-items:center;gap:8px}
+  .topbar .brand .dot{width:22px;height:22px;border-radius:6px;background:linear-gradient(135deg,var(--accent),var(--accent-2));
+    display:inline-flex;align-items:center;justify-content:center}
+  .topbar .brand .dot svg{width:14px;height:14px}
+  .lang-wrap{margin-left:auto;position:relative}
+  #langSel{appearance:none;-webkit-appearance:none;padding:9px 38px 9px 14px;border:1px solid var(--line);border-radius:10px;
+    font-size:14.5px;background:var(--surface);color:var(--fg);cursor:pointer;box-shadow:0 1px 2px rgba(0,0,0,.04);font-weight:500}
+  .lang-wrap::after{content:"";position:absolute;right:14px;top:50%;width:8px;height:8px;border-right:2px solid var(--muted);
+    border-bottom:2px solid var(--muted);transform:translateY(-70%) rotate(45deg);pointer-events:none}
+
+  section{margin:0 0 30px;scroll-margin-top:70px}
+  section:last-of-type{margin-bottom:0}
+  h2{font-size:19px;margin:0 0 14px;padding:12px 16px;border-radius:12px;background:var(--accent-soft);color:var(--accent-deep);
+    display:flex;align-items:center;gap:10px;font-weight:700}
+  h2 .idx{flex:0 0 auto;width:26px;height:26px;border-radius:8px;background:var(--accent);color:#fff;font-size:13px;
+    display:inline-flex;align-items:center;justify-content:center}
+  h3{font-size:15.5px;margin:18px 0 10px;color:var(--fg);font-weight:600}
+  p{margin:0 0 12px;color:var(--fg)}
+  ul{margin:0 0 14px;padding:0;list-style:none}
+  ul li{position:relative;padding:6px 0 6px 30px;border-bottom:1px dashed var(--line);color:var(--fg)}
+  ul li:last-child{border-bottom:none}
+  ul li::before{content:"";position:absolute;left:8px;top:13px;width:8px;height:8px;border-radius:50%;
+    background:var(--accent-2);box-shadow:0 0 0 3px var(--accent-soft)}
+  .rtl ul li{padding:6px 30px 6px 0}
+  .rtl ul li::before{left:auto;right:8px}
+
+  table{width:100%;border-collapse:separate;border-spacing:0;margin:12px 0 18px;font-size:13.5px;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  th,td{border-bottom:1px solid var(--line);padding:11px 13px;text-align:left;vertical-align:top}
+  th{background:var(--accent-deep);color:#fff;font-weight:600;font-size:13px;letter-spacing:.02em}
+  tbody tr:nth-child(even){background:#f8f9fe}
+  tbody tr:last-child td{border-bottom:none}
+  td:first-child{font-weight:600;color:var(--accent-deep);white-space:nowrap}
+
+  code{background:var(--accent-soft);border:1px solid #dbe3ff;border-radius:6px;padding:1px 7px;font-size:12.5px;color:var(--accent-deep)}
+  .note{background:var(--ok-soft);border:1px solid #bfe6cf;border-left:5px solid var(--ok);border-radius:12px;
+    padding:16px 18px;font-size:14px;color:#0c5132;margin:0 0 26px;display:flex;gap:12px}
+  .note .ic{flex:0 0 auto;width:24px;height:24px;border-radius:50%;background:var(--ok);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px}
+  .note b{color:#093f27}
+
+  footer{margin-top:34px;border-top:1px solid var(--line);padding-top:20px;color:var(--muted);font-size:13px;text-align:center}
+  footer .links{margin-bottom:8px}
+  footer a{color:var(--accent);text-decoration:none}
+  footer a:hover{text-decoration:underline}
+
+  .rtl{direction:rtl;text-align:right}
+  .rtl h2,.rtl p,.rtl h3{text-align:right}
+  .rtl table th,.rtl table td{text-align:right}
+  .rtl h2 .idx{order:2}
+  @media (max-width:560px){.main{padding:22px 16px}.hero h1{font-size:21px}table{font-size:12.5px;display:block;overflow-x:auto;white-space:nowrap}}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <header>
-    <h1>隐私政策 / Privacy Policy</h1>
-    <div class="sub">广告拦截器（Ad Blocker）· 基于本地 VPN / DNS 的广告与追踪拦截工具</div>
-    <div class="meta">
-      <span class="pill">生效日期 / Effective: 2026-08-07</span>
-      <span class="pill">数据控制者 / Controller: Ad Blocker 开发团队</span>
-      <span class="pill">数据最小化 / Data-minimized</span>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <span class="brand">
+      <span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 3v6c0 5-3.5 8.5-8 11-4.5-2.5-8-6-8-11V5l8-3z"/><path d="M9 12l2 2 4-4"/></svg></span>
+      Ad Blocker
+    </span>
+    <span class="lang-wrap">
+      <select id="langSel" onchange="render(this.value)" aria-label="Language"></select>
+    </span>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="hero-inner">
+    <span class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 3v6c0 5-3.5 8.5-8 11-4.5-2.5-8-6-8-11V5l8-3z"/><path d="M5 13l4 4 10-10"/></svg></span>
+    <div>
+      <h1 id="t-title">隐私政策 / Privacy Policy</h1>
+      <div class="sub" id="t-sub"></div>
+      <div class="meta">
+        <span class="pill" id="t-pill1"></span>
+        <span class="pill" id="t-pill2"></span>
+        <span class="pill" id="t-pill3"></span>
+      </div>
     </div>
-  </header>
-
-  <div class="toggle">
-    <button id="btn-zh" class="active" onclick="switchLang('zh')">中文</button>
-    <button id="btn-en" onclick="switchLang('en')">English</button>
   </div>
+</header>
 
-  <!-- ============ 中文 ============ -->
-  <div id="zh" class="lang show">
-    <div class="note">本应用所有拦截、统计与诊断处理均在您的设备本地完成，<b>不收集、不上传、不共享任何个人数据</b>。应用内无账号系统、无广告 SDK、无数据分析 SDK、无崩溃上报服务。</div>
+<div class="layout">
+  <main class="main">
+    <div id="content"></div>
+    <footer>
+      <div class="links">
+        <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">↑ <span id="t-top">回到顶部</span></a>
+      </div>
+      <p id="t-foot"></p>
+    </footer>
+  </main>
 
-    <section>
-      <h2>一、概述</h2>
-      <p>本应用是一款在您设备<b>本地</b>运行的广告拦截工具。它通过 Android <code>VpnService</code> 在 DNS 层拦截广告、追踪器和恶意域名。所有拦截、统计与诊断处理均在您的设备本地完成。</p>
-      <p>我们秉持「数据最小化」原则：本应用不收集、不上传、不共享任何个人数据或设备数据到任何外部服务器。</p>
-    </section>
-
-    <section>
-      <h2>二、我们处理的数据</h2>
-      <h3>2.1 仅在设备本地处理、不上传的数据</h3>
-      <table>
-        <tr><th>数据类型</th><th>用途</th><th>存储位置</th><th>是否离开设备</th></tr>
-        <tr><td>DNS 查询域名（被拦截与放行的域名）</td><td>本地匹配拦截规则、生成隐私报告</td><td>设备本地私有存储</td><td>否</td></tr>
-        <tr><td>拦截统计（次数、分类、来源应用）</td><td>向您展示隐私报告</td><td>设备本地私有存储</td><td>否</td></tr>
-        <tr><td>过滤规则（含公开源 AdGuard DNS Filter 等）</td><td>执行拦截</td><td>设备本地缓存</td><td>规则文本来自公开源，您的查询记录不上传</td></tr>
-        <tr><td>设置项（所选 DNS、缓存 TTL、始终开启 VPN 等）</td><td>恢复您的偏好</td><td>设备本地</td><td>否</td></tr>
-        <tr><td>崩溃日志（仅写入本地文件 <code>last_crash.log</code>）</td><td>供您在设备上查看</td><td>设备本地</td><td>否</td></tr>
-      </table>
-      <h3>2.2 我们明确不收集的数据</h3>
-      <p>姓名、邮箱、电话等身份信息；精确或粗略地理位置；设备标识符（IMEI、Android ID、广告 ID 等）；联系人、短信、通话记录；麦克风、摄像头、照片、文件内容；跨应用行为画像或追踪数据；任何用于广告或营销目的的数据。</p>
-    </section>
-
-    <section>
-      <h2>三、数据安全</h2>
-      <p>所有拦截规则、统计与设置均存储于应用私有沙盒目录，其他应用无法访问。我们不运营任何接收或存储您数据的服务器。本地数据在设备存储中以标准方式保存；DNS 查询仅转发至您选择的上游 DNS（Cloudflare / Google / AdGuard 等），查询内容不会与开发者共享。</p>
-    </section>
-
-    <section>
-      <h2>四、数据保留</h2>
-      <p>由于我们不向服务器传输任何个人数据，<b>不存在服务器端的个人数据保留</b>。设备本地的统计与日志会随您清除应用数据或卸载应用而删除。</p>
-    </section>
-
-    <section>
-      <h2>五、网络权限说明</h2>
-      <table>
-        <tr><th>权限</th><th>用途</th></tr>
-        <tr><td><code>INTERNET</code></td><td>将合法 DNS 查询转发至您选择的上游 DNS 服务器</td></tr>
-        <tr><td><code>ACCESS_NETWORK_STATE</code></td><td>检测网络状态以建立/恢复 VPN</td></tr>
-        <tr><td><code>QUERY_ALL_PACKAGES</code></td><td>按来源应用维度展示本地拦截统计（仅本地读取应用列表，不上传）</td></tr>
-        <tr><td><code>FOREGROUND_SERVICE</code> / <code>FOREGROUND_SERVICE_SPECIAL_USE</code></td><td>以「特殊用途」前台服务运行本地 VPN</td></tr>
-        <tr><td><code>POST_NOTIFICATIONS</code></td><td>显示 VPN 运行状态通知</td></tr>
-        <tr><td><code>RECEIVE_BOOT_COMPLETED</code></td><td>设备重启后按需恢复拦截（依据您的设置）</td></tr>
-      </table>
-    </section>
-
-    <section>
-      <h2>六、第三方服务</h2>
-      <p>本应用<b>不含任何第三方数据分析、广告或崩溃上报 SDK</b>。为下载公开过滤规则，应用通过标准 HTTPS 从规则提供方（如 AdGuard 公开过滤列表）获取规则文件；此过程仅传输规则文本，不包含您的个人数据或 DNS 查询记录。内置浏览器基于系统 <code>WebView</code>，其网络活动遵循设备浏览器自身策略。</p>
-    </section>
-
-    <section>
-      <h2>七、儿童隐私</h2>
-      <p>本应用不面向 13 岁以下儿童，也不故意收集任何年龄段用户的个人数据。</p>
-    </section>
-
-    <section>
-      <h2>八、您的权利</h2>
-      <p>由于我们不收集或上传任何个人数据，不存在需要我们删除或导出服务器数据的场景。您可随时通过卸载应用清除全部本地数据。</p>
-    </section>
-
-    <section>
-      <h2>九、政策变更</h2>
-      <p>若未来数据处理方式变更，我们将更新本文件生效日期，并向用户说明。</p>
-    </section>
-
-    <section>
-      <h2>十、联系方式</h2>
-      <p>如对本政策有疑问，可通过应用内反馈渠道或项目仓库 Issues 联系开发团队。</p>
-    </section>
-  </div>
-
-  <!-- ============ English ============ -->
-  <div id="en" class="lang">
-    <div class="note">All filtering, statistics, and diagnostics are processed <b>locally on your device</b>. This app does <b>not collect, upload, or share any personal data</b>. There is no account system, no advertising SDK, no analytics SDK, and no crash-reporting service.</div>
-
-    <section>
-      <h2>1. Overview</h2>
-      <p>This app is an <b>on-device</b> ad blocker. It uses the Android <code>VpnService</code> to block ads, trackers, and malicious domains at the DNS layer. All filtering, statistics, and diagnostics are processed locally on your device.</p>
-      <p>We follow a data-minimization principle: this app does not collect, upload, or share any personal or device data to any external server.</p>
-    </section>
-
-    <section>
-      <h2>2. Data We Process</h2>
-      <h3>2.1 Data processed on-device only (never uploaded)</h3>
-      <table>
-        <tr><th>Data</th><th>Purpose</th><th>Storage</th><th>Leaves device?</th></tr>
-        <tr><td>DNS query domains (blocked &amp; allowed)</td><td>Local rule matching, privacy report</td><td>Device private storage</td><td>No</td></tr>
-        <tr><td>Block stats (counts, categories, source app)</td><td>Show privacy report</td><td>Device private storage</td><td>No</td></tr>
-        <tr><td>Filter rules (incl. public AdGuard DNS Filter)</td><td>Blocking</td><td>Local cache</td><td>Rule text is public; your queries are not uploaded</td></tr>
-        <tr><td>Settings (DNS choice, TTL, always-on VPN…)</td><td>Restore preferences</td><td>Device local</td><td>No</td></tr>
-        <tr><td>Crash logs (local file <code>last_crash.log</code> only)</td><td>On-device viewing</td><td>Device local</td><td>No</td></tr>
-      </table>
-      <h3>2.2 Data we do NOT collect</h3>
-      <p>Names, emails, phone numbers; precise or approximate location; device identifiers (IMEI, Android ID, Advertising ID); contacts, SMS, call logs; microphone, camera, photos, file contents; cross-app behavioral profiles; any data for advertising or marketing.</p>
-    </section>
-
-    <section>
-      <h2>3. Data Security</h2>
-      <p>All rules, stats, and settings are stored in the app's private sandbox, inaccessible to other apps. We operate no servers that receive or store your data. Local data is kept in standard on-device storage. DNS queries are forwarded only to your chosen upstream resolver (Cloudflare / Google / AdGuard); query contents are never shared with the developer.</p>
-    </section>
-
-    <section>
-      <h2>4. Data Retention</h2>
-      <p>Because we transmit no personal data to any server, <b>there is no server-side personal data retention</b>. On-device stats and logs are removed when you clear app data or uninstall the app.</p>
-    </section>
-
-    <section>
-      <h2>5. Network Permissions</h2>
-      <table>
-        <tr><th>Permission</th><th>Purpose</th></tr>
-        <tr><td><code>INTERNET</code></td><td>Forward legitimate DNS queries to your chosen upstream DNS</td></tr>
-        <tr><td><code>ACCESS_NETWORK_STATE</code></td><td>Detect network state to establish/restore VPN</td></tr>
-        <tr><td><code>QUERY_ALL_PACKAGES</code></td><td>Attribute local block stats by source app (local app-list read only, not uploaded)</td></tr>
-        <tr><td><code>FOREGROUND_SERVICE</code> / <code>FOREGROUND_SERVICE_SPECIAL_USE</code></td><td>Run the local VPN as a special-use foreground service</td></tr>
-        <tr><td><code>POST_NOTIFICATIONS</code></td><td>Show VPN status notification</td></tr>
-        <tr><td><code>RECEIVE_BOOT_COMPLETED</code></td><td>Restore blocking after reboot per your settings</td></tr>
-      </table>
-    </section>
-
-    <section>
-      <h2>6. Third-Party Services</h2>
-      <p>This app <b>contains no third-party analytics, advertising, or crash-reporting SDKs.</b> To fetch public filter rules, the app downloads rule files over standard HTTPS from providers (e.g., AdGuard public filter lists); only rule text is transferred, never your personal data or DNS queries. The built-in browser uses the system <code>WebView</code>, subject to your device browser's own policy.</p>
-    </section>
-
-    <section>
-      <h2>7. Children's Privacy</h2>
-      <p>The app is not directed to children under 13 and does not knowingly collect personal data from any age group.</p>
-    </section>
-
-    <section>
-      <h2>8. Your Rights</h2>
-      <p>As we collect and upload no personal data, there is no server data for us to delete or export. You may clear all local data at any time by uninstalling the app.</p>
-    </section>
-
-    <section>
-      <h2>9. Policy Changes</h2>
-      <p>If data handling changes in the future, we will update the effective date and notify users.</p>
-    </section>
-
-    <section>
-      <h2>10. Contact</h2>
-      <p>Questions about this policy may be sent via the in-app feedback channel or the project repository Issues.</p>
-    </section>
-  </div>
-
-  <footer>
-    <p>本政策以简体中文与英文为准。/ This policy is provided in Simplified Chinese and English.</p>
-    <p>广告拦截器 (Ad Blocker) · 生效日期 2026-08-07</p>
-  </footer>
+  <aside class="toc" id="toc">
+    <h4 id="t-toc">目录 / Contents</h4>
+    <nav id="toc-nav"></nav>
+  </aside>
 </div>
 
 <script>
-  function switchLang(lang){
-    document.getElementById('zh').classList.toggle('show', lang==='zh');
-    document.getElementById('en').classList.toggle('show', lang==='en');
-    document.getElementById('btn-zh').classList.toggle('active', lang==='zh');
-    document.getElementById('btn-en').classList.toggle('active', lang==='en');
-    try{ localStorage.setItem('pp_lang', lang); }catch(e){}
-    window.scrollTo({top:0, behavior:'smooth'});
+const LANGS = [
+  ["zh","中文（简体）"],["en","English"],["ja","日本語"],["ko","한국어"],
+  ["es","Español"],["fr","Français"],["de","Deutsch"],["pt","Português"],
+  ["pt_BR","Português (Brasil)"],["it","Italiano"],["ru","Русский"],
+  ["ar","العربية"],["hi","हिन्दी"],["nl","Nederlands"],["tr","Türkçe"],["vi","Tiếng Việt"]
+];
+const RTL = new Set(["ar"]);
+const TOC = {zh:"隐私政策目录",en:"Contents",ja:"目次",ko:"목차",es:"Contenido",fr:"Sommaire",de:"Inhalt",pt:"Conteúdo",pt_BR:"Conteúdo",it:"Indice",ru:"Содержание",ar:"المحتويات",hi:"विषय सूची",nl:"Inhoudsopgave",tr:"İçindekiler",vi:"Mục lục"};
+
+// 隐私政策数据。每个语言含：title, sub, pills[], note, sections[{h2, blocks[]}]
+// block 类型：{t:'p',v} | {t:'h3',v} | {t:'list',v:[]} | {t:'table',head:[],rows:[[]]}
+const D = {
+
+zh:{
+  title:"隐私政策", sub:"广告拦截器（Ad Blocker）· 基于本地 VPN / DNS 的广告与追踪拦截工具",
+  pills:["生效日期：2026-08-07","数据控制者：Ad Blocker 开发团队","数据最小化"],
+  note:"本应用所有拦截、统计与诊断处理均在您的设备本地完成，不收集、不上传、不共享任何个人数据。应用内无账号系统、无广告 SDK、无数据分析 SDK、无崩溃上报服务。",
+  sections:[
+    {h2:"一、概述",blocks:[
+      {t:"p",v:"本应用是一款在您设备本地运行的广告拦截工具。它通过 Android VpnService 在 DNS 层拦截广告、追踪器和恶意域名。所有拦截、统计与诊断处理均在您的设备本地完成。"},
+      {t:"p",v:"我们秉持「数据最小化」原则：本应用不收集、不上传、不共享任何个人数据或设备数据到任何外部服务器。"}
+    ]},
+    {h2:"二、我们处理的数据",blocks:[
+      {t:"h3",v:"2.1 仅在设备本地处理、不上传的数据"},
+      {t:"table",head:["数据类型","用途","存储位置","是否离开设备"],rows:[
+        ["DNS 查询域名（被拦截与放行的域名）","本地匹配拦截规则、生成隐私报告","设备本地私有存储","否"],
+        ["拦截统计（次数、分类、来源应用）","向您展示隐私报告","设备本地私有存储","否"],
+        ["过滤规则（含公开源 AdGuard DNS Filter 等）","执行拦截","设备本地缓存","规则文本来自公开源，您的查询记录不上传"],
+        ["设置项（所选 DNS、缓存 TTL、始终开启 VPN 等）","恢复您的偏好","设备本地","否"],
+        ["崩溃日志（仅写入本地文件 last_crash.log）","供您在设备上查看","设备本地","否"]
+      ]},
+      {t:"h3",v:"2.2 我们明确不收集的数据"},
+      {t:"list",v:["姓名、邮箱、电话等身份信息","精确或粗略地理位置","设备标识符（IMEI、Android ID、广告 ID 等）","联系人、短信、通话记录","麦克风、摄像头、照片、文件内容","跨应用行为画像或追踪数据","任何用于广告或营销目的的数据"]}
+    ]},
+    {h2:"三、数据安全",blocks:[
+      {t:"p",v:"所有拦截规则、统计与设置均存储于应用私有沙盒目录，其他应用无法访问。我们不运营任何接收或存储您数据的服务器。本地数据在设备存储中以标准方式保存；DNS 查询仅转发至您选择的上游 DNS（Cloudflare / Google / AdGuard 等），查询内容不会与开发者共享。"}
+    ]},
+    {h2:"四、数据保留",blocks:[
+      {t:"p",v:"由于我们不向服务器传输任何个人数据，不存在服务器端的个人数据保留。设备本地的统计与日志会随您清除应用数据或卸载应用而删除。"}
+    ]},
+    {h2:"五、网络权限说明",blocks:[
+      {t:"table",head:["权限","用途"],rows:[
+        ["INTERNET","将合法 DNS 查询转发至您选择的上游 DNS 服务器"],
+        ["ACCESS_NETWORK_STATE","检测网络状态以建立/恢复 VPN"],
+        ["QUERY_ALL_PACKAGES","按来源应用维度展示本地拦截统计（仅本地读取应用列表，不上传）"],
+        ["FOREGROUND_SERVICE / FOREGROUND_SERVICE_SPECIAL_USE","以「特殊用途」前台服务运行本地 VPN"],
+        ["POST_NOTIFICATIONS","显示 VPN 运行状态通知"],
+        ["RECEIVE_BOOT_COMPLETED","设备重启后按需恢复拦截（依据您的设置）"]
+      ]}
+    ]},
+    {h2:"六、第三方服务",blocks:[
+      {t:"p",v:"本应用不含任何第三方数据分析、广告或崩溃上报 SDK。为下载公开过滤规则，应用通过标准 HTTPS 从规则提供方（如 AdGuard 公开过滤列表）获取规则文件；此过程仅传输规则文本，不包含您的个人数据或 DNS 查询记录。内置浏览器基于系统 WebView，其网络活动遵循设备浏览器自身策略。"}
+    ]},
+    {h2:"七、儿童隐私",blocks:[
+      {t:"p",v:"本应用不面向 13 岁以下儿童，也不故意收集任何年龄段用户的个人数据。"}
+    ]},
+    {h2:"八、您的权利",blocks:[
+      {t:"p",v:"由于我们不收集或上传任何个人数据，不存在需要我们删除或导出服务器数据的场景。您可随时通过卸载应用清除全部本地数据。"}
+    ]},
+    {h2:"九、政策变更",blocks:[
+      {t:"p",v:"若未来数据处理方式变更，我们将更新本文件生效日期，并向用户说明。"}
+    ]},
+    {h2:"十、联系方式",blocks:[
+      {t:"p",v:"如对本政策有疑问，可通过应用内反馈渠道或项目仓库 Issues 联系开发团队。"}
+    ]}
+  ],
+  foot:"本政策以简体中文与英文为准。广告拦截器 (Ad Blocker) · 生效日期 2026-08-07"
+},
+
+en:{
+  title:"Privacy Policy", sub:"Ad Blocker · On-device VPN / DNS ad & tracker blocker",
+  pills:["Effective: 2026-08-07","Controller: Ad Blocker Dev Team","Data-minimized"],
+  note:"All filtering, statistics, and diagnostics are processed locally on your device. This app does not collect, upload, or share any personal data. There is no account system, no advertising SDK, no analytics SDK, and no crash-reporting service.",
+  sections:[
+    {h2:"1. Overview",blocks:[
+      {t:"p",v:"This app is an on-device ad blocker. It uses the Android VpnService to block ads, trackers, and malicious domains at the DNS layer. All filtering, statistics, and diagnostics are processed locally on your device."},
+      {t:"p",v:"We follow a data-minimization principle: this app does not collect, upload, or share any personal or device data to any external server."}
+    ]},
+    {h2:"2. Data We Process",blocks:[
+      {t:"h3",v:"2.1 Data processed on-device only (never uploaded)"},
+      {t:"table",head:["Data","Purpose","Storage","Leaves device?"],rows:[
+        ["DNS query domains (blocked & allowed)","Local rule matching, privacy report","Device private storage","No"],
+        ["Block stats (counts, categories, source app)","Show privacy report","Device private storage","No"],
+        ["Filter rules (incl. public AdGuard DNS Filter)","Blocking","Local cache","Rule text is public; your queries are not uploaded"],
+        ["Settings (DNS choice, TTL, always-on VPN…)","Restore preferences","Device local","No"],
+        ["Crash logs (local file last_crash.log only)","On-device viewing","Device local","No"]
+      ]},
+      {t:"h3",v:"2.2 Data we do NOT collect"},
+      {t:"list",v:["Names, emails, phone numbers","Precise or approximate location","Device identifiers (IMEI, Android ID, Advertising ID)","Contacts, SMS, call logs","Microphone, camera, photos, file contents","Cross-app behavioral profiles","Any data for advertising or marketing"]}
+    ]},
+    {h2:"3. Data Security",blocks:[
+      {t:"p",v:"All rules, stats, and settings are stored in the app's private sandbox, inaccessible to other apps. We operate no servers that receive or store your data. Local data is kept in standard on-device storage. DNS queries are forwarded only to your chosen upstream resolver (Cloudflare / Google / AdGuard); query contents are never shared with the developer."}
+    ]},
+    {h2:"4. Data Retention",blocks:[
+      {t:"p",v:"Because we transmit no personal data to any server, there is no server-side personal data retention. On-device stats and logs are removed when you clear app data or uninstall the app."}
+    ]},
+    {h2:"5. Network Permissions",blocks:[
+      {t:"table",head:["Permission","Purpose"],rows:[
+        ["INTERNET","Forward legitimate DNS queries to your chosen upstream DNS"],
+        ["ACCESS_NETWORK_STATE","Detect network state to establish/restore VPN"],
+        ["QUERY_ALL_PACKAGES","Attribute local block stats by source app (local app-list read only, not uploaded)"],
+        ["FOREGROUND_SERVICE / FOREGROUND_SERVICE_SPECIAL_USE","Run the local VPN as a special-use foreground service"],
+        ["POST_NOTIFICATIONS","Show VPN status notification"],
+        ["RECEIVE_BOOT_COMPLETED","Restore blocking after reboot per your settings"]
+      ]}
+    ]},
+    {h2:"6. Third-Party Services",blocks:[
+      {t:"p",v:"This app contains no third-party analytics, advertising, or crash-reporting SDKs. To fetch public filter rules, the app downloads rule files over standard HTTPS from providers (e.g., AdGuard public filter lists); only rule text is transferred, never your personal data or DNS queries. The built-in browser uses the system WebView, subject to your device browser's own policy."}
+    ]},
+    {h2:"7. Children's Privacy",blocks:[
+      {t:"p",v:"The app is not directed to children under 13 and does not knowingly collect personal data from any age group."}
+    ]},
+    {h2:"8. Your Rights",blocks:[
+      {t:"p",v:"As we collect and upload no personal data, there is no server data for us to delete or export. You may clear all local data at any time by uninstalling the app."}
+    ]},
+    {h2:"9. Policy Changes",blocks:[
+      {t:"p",v:"If data handling changes in the future, we will update the effective date and notify users."}
+    ]},
+    {h2:"10. Contact",blocks:[
+      {t:"p",v:"Questions about this policy may be sent via the in-app feedback channel or the project repository Issues."}
+    ]}
+  ],
+  foot:"This policy is provided in Simplified Chinese and English. Ad Blocker · Effective 2026-08-07"
+},
+
+ja:{
+  title:"プライバシーポリシー", sub:"Ad Blocker（広告ブロッカー）· デバイス内 VPN / DNS による広告・トラッカー遮断ツール",
+  pills:["生效日：2026-08-07","管理者：Ad Blocker 開発チーム","データ最小化"],
+  note:"本アプリのすべての遮断・統計・診断処理はお使いのデバイス内で行われます。いかなる個人データも収集・アップロード・共有することはありません。アカウント機能、広告 SDK、分析 SDK、クラッシュレポート機能は含まれていません。",
+  sections:[
+    {h2:"1. 概要",blocks:[
+      {t:"p",v:"本アプリはデバイス内で動作する広告ブロッカーです。Android の VpnService を使用して DNS 層で広告・トラッカー・悪意のあるドメインを遮断します。すべての遮断・統計・診断処理はデバイス内で行われます。"},
+      {t:"p",v:"当チームは「データ最小化」の原則に従い、いかなる個人・デバイスデータも外部サーバーに収集・アップロード・共有しません。"}
+    ]},
+    {h2:"2. 当チームが処理するデータ",blocks:[
+      {t:"h3",v:"2.1 デバイス内のみで処理され、アップロードされないデータ"},
+      {t:"table",head:["データ種別","目的","保存場所","デバイス外へ出るか"],rows:[
+        ["DNS クエリドメイン（遮断・許可されたもの）","ローカルでのルール照合・プライバシーレポート","デバイス内のプライベート領域","いいえ"],
+        ["遮断統計（回数・分類・元アプリ）","プライバシーレポートの表示","デバイス内のプライベート領域","いいえ"],
+        ["フィルタールール（公開元の AdGuard DNS Filter 等）","遮断の実行","デバイス内キャッシュ","ルール本文は公開元から。お客様のクエリはアップロードされない"],
+        ["設定（選択 DNS・TTL・常時 VPN 等）","環境設定の復元","デバイス内","いいえ"],
+        ["クラッシュログ（ローカルファイル last_crash.log のみ）","デバイス上での確認用","デバイス内","いいえ"]
+      ]},
+      {t:"h3",v:"2.2 当チームが収集しないデータ"},
+      {t:"list",v:["氏名・メール・電話番号などの身元情報","正確・おおよその位置情報","デバイス識別子（IMEI・Android ID・広告 ID 等）","連絡先・SMS・通話履歴","マイク・カメラ・写真・ファイル内容","アプリ間の行動プロファイル","広告・マーケティング目的のいかなるデータ"]}
+    ]},
+    {h2:"3. データセキュリティ",blocks:[
+      {t:"p",v:"すべてのルール・統計・設定は他アプリからアクセスできないアプリ専用サンドボックスに保存されます。当チームはお客様のデータを受信・保存するサーバーを運用していません。ローカルデータは標準的なデバイス内保存で保管されます。DNS クエリはお客様が選択した上游リゾルバ（Cloudflare / Google / AdGuard 等）にのみ転送され、クエリ内容が開発者と共有されることはありません。"}
+    ]},
+    {h2:"4. データ保持",blocks:[
+      {t:"p",v:"当チームはいかなる個人データもサーバーに送信しないため、サーバー側での個人データ保持はありません。デバイス内の統計とログは、アプリデータの削除やアンインストール時に消去されます。"}
+    ]},
+    {h2:"5. ネットワーク権限について",blocks:[
+      {t:"table",head:["権限","目的"],rows:[
+        ["INTERNET","正当な DNS クエリを選択した上游 DNS へ転送"],
+        ["ACCESS_NETWORK_STATE","ネットワーク状態を検知し VPN を確立・復元"],
+        ["QUERY_ALL_PACKAGES","元アプリ別にローカル遮断統計を表示（アプリ一覧はローカル参照のみ、アップロードせず）"],
+        ["FOREGROUND_SERVICE / FOREGROUND_SERVICE_SPECIAL_USE","特別用途のフォアグラウンドサービスとしてローカル VPN を実行"],
+        ["POST_NOTIFICATIONS","VPN 状態の通知を表示"],
+        ["RECEIVE_BOOT_COMPLETED","再起動後に設定に応じて遮断を復元"]
+      ]}
+    ]},
+    {h2:"6. 第三者サービス",blocks:[
+      {t:"p",v:"本アプリに第三者の分析・広告・クラッシュレポート SDK は含まれていません。公開フィルタールールを取得するため、標準 HTTPS で提供元（AdGuard の公開フィルターリスト等）からルールファイルをダウンロードします。この過程で転送されるのはルール本文のみで、お客様の個人データや DNS クエリは含まれません。内蔵ブラウザーはシステムの WebView を使用し、その通信はデバイスのブラウザー自体の方針に従います。"}
+    ]},
+    {h2:"7. 児童のプライバシー",blocks:[
+      {t:"p",v:"本アプリは 13 歳未満の児童を対象としておらず、いかなる年齢層の個人データも意図的に収集しません。"}
+    ]},
+    {h2:"8. お客様の権利",blocks:[
+      {t:"p",v:"当チームはいかなる個人データも収集・アップロードしていないため、サーバー上のデータを削除・エクスポートする必要はありません。いつでもアプリをアンインストールしてすべてのローカルデータを消去できます。"}
+    ]},
+    {h2:"9. ポリシーの変更",blocks:[
+      {t:"p",v:"将来データの取り扱いが変更される場合、本書の生效日を更新し、ユーザーに説明します。"}
+    ]},
+    {h2:"10. お問い合わせ",blocks:[
+      {t:"p",v:"本ポリシーに関するご質問は、アプリ内フィードバック窓口またはプロジェクトのリポジトリ Issues までお寄せください。"}
+    ]}
+  ],
+  foot:"本ポリシーは簡体字中国語および英語で提供されます。Ad Blocker · 生效日 2026-08-07"
+},
+
+ko:{
+  title:"개인정보 처리방침", sub:"Ad Blocker · 기기 내 VPN / DNS 광고 및 추적 차단 도구",
+  pills:["시행일: 2026-08-07","관리자: Ad Blocker 개발팀","데이터 최소화"],
+  note:"본 앱의 모든 차단·통계·진단 처리는 사용자의 기기 내에서 이루어집니다. 어떠한 개인 데이터도 수집·업로드·공유하지 않습니다. 계정 시스템, 광고 SDK, 분석 SDK, 크래시 보고 서비스는 포함되어 있지 않습니다.",
+  sections:[
+    {h2:"1. 개요",blocks:[
+      {t:"p",v:"본 앱은 기기 내에서 동작하는 광고 차단기입니다. Android VpnService를 사용하여 DNS 계층에서 광고, 추적기, 악성 도메인을 차단합니다. 모든 차단·통계·진단 처리는 기기 내에서 이루어집니다."},
+      {t:"p",v:"당사는 '데이터 최소화' 원칙에 따라 어떠한 개인·기기 데이터도 외부 서버에 수집·업로드·공유하지 않습니다."}
+    ]},
+    {h2:"2. 처리하는 데이터",blocks:[
+      {t:"h3",v:"2.1 기기 내에서만 처리되고 업로드되지 않는 데이터"},
+      {t:"table",head:["데이터 유형","목적","저장 위치","기기 외부로 나가는가"],rows:[
+        ["DNS 쿼리 도메인(차단 및 허용된 것)","로컬 규칙 매칭, 개인정보 보고서","기기 내 비공개 저장소","아니오"],
+        ["차단 통계(횟수, 분류, 출처 앱)","개인정보 보고서 표시","기기 내 비공개 저장소","아니오"],
+        ["필터 규칙(공개 출처 AdGuard DNS Filter 등)","차단 수행","기기 내 캐시","규칙 텍스트는 공개 출처이며 사용자 쿼리는 업로드되지 않음"],
+        ["설정(선택 DNS, TTL, 항상 켜기 VPN 등)","환경설정 복원","기기 내","아니오"],
+        ["크래시 로그(로컬 파일 last_crash.log만)","기기에서 확인용","기기 내","아니오"]
+      ]},
+      {t:"h3",v:"2.2 수집하지 않는 데이터"},
+      {t:"list",v:["이름, 이메일, 전화번호 등 신원 정보","정확하거나 대략적인 위치 정보","기기 식별자(IMEI, Android ID, 광고 ID 등)","연락처, SMS, 통화 기록","마이크, 카메라, 사진, 파일 내용","앱 간 행동 프로필","광고 또는 마케팅 목적의 모든 데이터"]}
+    ]},
+    {h2:"3. 데이터 보안",blocks:[
+      {t:"p",v:"모든 규칙·통계·설정은 다른 앱이 접근할 수 없는 앱 전용 샌드박스에 저장됩니다. 당사는 사용자 데이터를 수신·저장하는 서버를 운영하지 않습니다. 로컬 데이터는 표준 기기 내 저장소에 보관됩니다. DNS 쿼리는 사용자가 선택한 상위 리졸버(Cloudflare / Google / AdGuard 등)로만 전달되며 쿼리 내용이 개발자와 공유되는 일은 없습니다."}
+    ]},
+    {h2:"4. 데이터 보관",blocks:[
+      {t:"p",v:"당사는 어떠한 개인 데이터도 서버로 전송하지 않으므로 서버 측 개인 데이터 보관이 없습니다. 기기 내 통계와 로그는 앱 데이터 삭제나 앱 제거 시 제거됩니다."}
+    ]},
+    {h2:"5. 네트워크 권한 안내",blocks:[
+      {t:"table",head:["권한","목적"],rows:[
+        ["INTERNET","합법적인 DNS 쿼리를 사용자가 선택한 상위 DNS로 전달"],
+        ["ACCESS_NETWORK_STATE","네트워크 상태를 감지하여 VPN 설정/복원"],
+        ["QUERY_ALL_PACKAGES","출처 앱별로 로컬 차단 통계 표시(앱 목록은 로컬 참조만, 업로드 안 함)"],
+        ["FOREGROUND_SERVICE / FOREGROUND_SERVICE_SPECIAL_USE","특수 용도 포그라운드 서비스로 로컬 VPN 실행"],
+        ["POST_NOTIFICATIONS","VPN 상태 알림 표시"],
+        ["RECEIVE_BOOT_COMPLETED","재시작 후 설정에 따라 차단 복원"]
+      ]}
+    ]},
+    {h2:"6. 제3자 서비스",blocks:[
+      {t:"p",v:"본 앱에는 제3자 분석·광고·크래시 보고 SDK가 포함되어 있지 않습니다. 공개 필터 규칙을 가져오기 위해 표준 HTTPS로 제공처(예: AdGuard 공개 필터 목록)에서 규칙 파일을 다운로드합니다. 이 과정에서 전송되는 것은 규칙 텍스트만이며 사용자의 개인 데이터나 DNS 쿼리는 포함되지 않습니다. 내장 브라우저는 시스템 WebView를 사용하며 그 네트워크 활동은 기기 브라우저의 정책을 따릅니다."}
+    ]},
+    {h2:"7. 아동의 개인정보",blocks:[
+      {t:"p",v:"본 앱은 13세 미만 아동을 대상으로 하지 않으며 어떠한 연령층의 개인 데이터도 의도적으로 수집하지 않습니다."}
+    ]},
+    {h2:"8. 사용자의 권리",blocks:[
+      {t:"p",v:"당사는 어떠한 개인 데이터도 수집·업로드하지 않으므로 서버 데이터를 삭제하거나 내보낼 필요가 없습니다. 언제든 앱을 제거하여 모든 로컬 데이터를 삭제할 수 있습니다."}
+    ]},
+    {h2:"9. 방침 변경",blocks:[
+      {t:"p",v:"향후 데이터 처리 방식이 변경되면 본 문서의 시행일을 갱신하고 사용자에게 안내합니다."}
+    ]},
+    {h2:"10. 문의처",blocks:[
+      {t:"p",v:"본 방침에 대한 문의는 앱 내 피드백 채널 또는 프로젝트 저장소 Issues로 연락해 주세요."}
+    ]}
+  ],
+  foot:"본 방침은 간체 중국어와 영어로 제공됩니다. Ad Blocker · 시행일 2026-08-07"
+},
+
+es:{
+  title:"Política de Privacidad", sub:"Ad Blocker · Bloqueador de anuncios y rastreadores por VPN / DNS en el dispositivo",
+  pills:["Vigente: 2026-08-07","Responsable: Equipo de Ad Blocker","Minimización de datos"],
+  note:"Todo el filtrado, las estadísticas y el diagnóstico se procesan localmente en su dispositivo. Esta app no recopila, sube ni comparte ningún dato personal. No hay sistema de cuentas, ni SDK de publicidad, ni SDK de analítica, ni servicio de informes de fallos.",
+  sections:[
+    {h2:"1. Resumen",blocks:[
+      {t:"p",v:"Esta app es un bloqueador de anuncios que funciona en el dispositivo. Usa el VpnService de Android para bloquear anuncios, rastreadores y dominios maliciosos en la capa DNS. Todo el filtrado, las estadísticas y el diagnóstico se procesan localmente en su dispositivo."},
+      {t:"p",v:"Seguimos el principio de minimización de datos: esta app no recopila, sube ni comparte ningún dato personal o del dispositivo con ningún servidor externo."}
+    ]},
+    {h2:"2. Datos que tratamos",blocks:[
+      {t:"h3",v:"2.1 Datos tratados solo en el dispositivo (nunca subidos)"},
+      {t:"table",head:["Dato","Propósito","Almacenamiento","¿Sale del dispositivo?"],rows:[
+        ["Dominios de consultas DNS (bloqueados y permitidos)","Coincidencia local de reglas, informe de privacidad","Almacenamiento privado del dispositivo","No"],
+        ["Estadísticas de bloqueo (conteos, categorías, app de origen)","Mostrar informe de privacidad","Almacenamiento privado del dispositivo","No"],
+        ["Reglas de filtrado (incl. AdGuard DNS Filter público)","Bloquear","Caché local","El texto de reglas es público; sus consultas no se suben"],
+        ["Ajustes (DNS elegido, TTL, VPN siempre activa…)","Restaurar preferencias","Local del dispositivo","No"],
+        ["Registros de fallos (solo archivo local last_crash.log)","Visualización en el dispositivo","Local del dispositivo","No"]
+      ]},
+      {t:"h3",v:"2.2 Datos que NO recopilamos"},
+      {t:"list",v:["Nombres, correos, números de teléfono","Ubicación precisa o aproximada","Identificadores de dispositivo (IMEI, Android ID, ID de publicidad)","Contactos, SMS, registros de llamadas","Micrófono, cámara, fotos, contenido de archivos","Perfiles de comportamiento entre apps","Cualquier dato con fines publicitarios o de marketing"]}
+    ]},
+    {h2:"3. Seguridad de los datos",blocks:[
+      {t:"p",v:"Todas las reglas, estadísticas y ajustes se guardan en el sandbox privado de la app, inaccesible para otras apps. No operamos servidores que reciban o almacenen sus datos. Los datos locales se guardan en el almacenamiento estándar del dispositivo. Las consultas DNS se reenvían solo al resolvedor ascendente que elija (Cloudflare / Google / AdGuard); el contenido de las consultas nunca se comparte con el desarrollador."}
+    ]},
+    {h2:"4. Conservación de datos",blocks:[
+      {t:"p",v:"Como no transmitimos ningún dato personal a ningún servidor, no hay conservación de datos personales en el servidor. Las estadísticas y registros locales se eliminan al borrar los datos de la app o desinstalarla."}
+    ]},
+    {h2:"5. Permisos de red",blocks:[
+      {t:"table",head:["Permiso","Propósito"],rows:[
+        ["INTERNET","Reenviar consultas DNS legítimas al DNS ascendente elegido"],
+        ["ACCESS_NETWORK_STATE","Detectar el estado de red para establecer/restaurar la VPN"],
+        ["QUERY_ALL_PACKAGES","Atribuir estadísticas de bloqueo locales por app de origen (solo lectura local de la lista de apps, no se sube)"],
+        ["FOREGROUND_SERVICE / FOREGROUND_SERVICE_SPECIAL_USE","Ejecutar la VPN local como servicio en primer plano de uso especial"],
+        ["POST_NOTIFICATIONS","Mostrar notificación del estado de la VPN"],
+        ["RECEIVE_BOOT_COMPLETED","Restaurar el bloqueo tras reiniciar según sus ajustes"]
+      ]}
+    ]},
+    {h2:"6. Servicios de terceros",blocks:[
+      {t:"p",v:"Esta app no contiene SDK de analítica, publicidad ni informes de fallos de terceros. Para obtener reglas de filtrado públicas, la app descarga archivos de reglas por HTTPS estándar desde proveedores (p. ej., listas públicas de filtros de AdGuard); solo se transfiere el texto de reglas, nunca sus datos personales ni sus consultas DNS. El navegador integrado usa el WebView del sistema, sujeto a la política del navegador de su dispositivo."}
+    ]},
+    {h2:"7. Privacidad de los menores",blocks:[
+      {t:"p",v:"La app no está dirigida a menores de 13 años y no recopila a sabiendas datos personales de ningún grupo de edad."}
+    ]},
+    {h2:"8. Sus derechos",blocks:[
+      {t:"p",v:"Como no recopilamos ni subimos datos personales, no hay datos en servidores que debamos eliminar o exportar. Puede borrar todos los datos locales en cualquier momento desinstalando la app."}
+    ]},
+    {h2:"9. Cambios en la política",blocks:[
+      {t:"p",v:"Si en el futuro cambia el tratamiento de datos, actualizaremos la fecha de vigencia e informaremos a los usuarios."}
+    ]},
+    {h2:"10. Contacto",blocks:[
+      {t:"p",v:"Las dudas sobre esta política pueden enviarse por el canal de feedback dentro de la app o por Issues del repositorio del proyecto."}
+    ]}
+  ],
+  foot:"Esta política se proporciona en chino simplificado e inglés. Ad Blocker · Vigente 2026-08-07"
+},
+
+fr:{
+  title:"Politique de Confidentialité", sub:"Ad Blocker · Bloqueur d'annonces et de traqueurs par VPN / DNS sur l'appareil",
+  pills:["En vigueur : 2026-08-07","Responsable : Équipe Ad Blocker","Minimisation des données"],
+  note:"Tout le filtrage, les statistiques et le diagnostic sont traités localement sur votre appareil. Cette application ne collecte, n'envoie ni ne partage aucune donnée personnelle. Il n'y a pas de système de compte, de SDK publicitaire, de SDK d'analytique ni de service de rapport de plantage.",
+  sections:[
+    {h2:"1. Aperçu",blocks:[
+      {t:"p",v:"Cette application est un bloqueur de publicités fonctionnant sur l'appareil. Elle utilise le VpnService d'Android pour bloquer les annonces, les traqueurs et les domaines malveillants au niveau DNS. Tout le filtrage, les statistiques et le diagnostic sont traités localement sur votre appareil."},
+      {t:"p",v:"Nous suivons le principe de minimisation des données : cette application ne collecte, n'envoie ni ne partage aucune donnée personnelle ou de l'appareil vers un serveur externe."}
+    ]},
+    {h2:"2. Données traitées",blocks:[
+      {t:"h3",v:"2.1 Données traitées uniquement sur l'appareil (jamais envoyées)"},
+      {t:"table",head:["Donnée","Finalité","Stockage","Quitte l'appareil ?"],rows:[
+        ["Domaines des requêtes DNS (bloqués et autorisés)","Correspondance locale des règles, rapport de confidentialité","Stockage privé de l'appareil","Non"],
+        ["Statistiques de blocage (comptes, catégories, app source)","Afficher le rapport de confidentialité","Stockage privé de l'appareil","Non"],
+        ["Règles de filtrage (dont AdGuard DNS Filter public)","Blocage","Cache local","Le texte des règles est public ; vos requêtes ne sont pas envoyées"],
+        ["Paramètres (DNS choisi, TTL, VPN toujours actif…)","Restaurer les préférences","Local de l'appareil","Non"],
+        ["Journaux de plantage (fichier local last_crash.log uniquement)","Consultation sur l'appareil","Local de l'appareil","Non"]
+      ]},
+      {t:"h3",v:"2.2 Données que nous ne collectons PAS"},
+      {t:"list",v:["Noms, e-mails, numéros de téléphone","Localisation précise ou approximative","Identifiants d'appareil (IMEI, Android ID, ID publicitaire)","Contacts, SMS, journaux d'appels","Microphone, caméra, photos, contenu de fichiers","Profils comportementaux inter-applications","Toute donnée à des fins publicitaires ou marketing"]}
+    ]},
+    {h2:"3. Sécurité des données",blocks:[
+      {t:"p",v:"Toutes les règles, statistiques et paramètres sont stockés dans le sandbox privé de l'application, inaccessible aux autres apps. Nous n'exploitons aucun serveur recevant ou stockant vos données. Les données locales sont conservées dans le stockage standard de l'appareil. Les requêtes DNS sont transmises uniquement au résolveur amont choisi (Cloudflare / Google / AdGuard) ; le contenu des requêtes n'est jamais partagé avec le développeur."}
+    ]},
+    {h2:"4. Conservation des données",blocks:[
+      {t:"p",v:"Comme nous ne transmettons aucune donnée personnelle à un serveur, il n'y a pas de conservation de données personnelles côté serveur. Les statistiques et journaux locaux sont supprimés lors de l'effacement des données de l'app ou de sa désinstallation."}
+    ]},
+    {h2:"5. Autorisations réseau",blocks:[
+      {t:"table",head:["Autorisation","Finalité"],rows:[
+        ["INTERNET","Transmettre les requêtes DNS légitimes au DNS amont choisi"],
+        ["ACCESS_NETWORK_STATE","Détecter l'état du réseau pour établir/restaurer le VPN"],
+        ["QUERY_ALL_PACKAGES","Attribuer les statistiques de blocage locales par app source (lecture locale de la liste des apps, non envoyée)"],
+        ["FOREGROUND_SERVICE / FOREGROUND_SERVICE_SPECIAL_USE","Exécuter le VPN local comme service de premier plan à usage spécial"],
+        ["POST_NOTIFICATIONS","Afficher la notification d'état du VPN"],
+        ["RECEIVE_BOOT_COMPLETED","Restaurer le blocage après redémarrage selon vos réglages"]
+      ]}
+    ]},
+    {h2:"6. Services tiers",blocks:[
+      {t:"p",v:"Cette application ne contient aucun SDK d'analytique, publicitaire ou de rapport de plantage tiers. Pour récupérer des règles de filtrage publiques, l'application télécharge des fichiers de règles via HTTPS standard depuis des fournisseurs (ex. listes publiques de filtres AdGuard) ; seul le texte des règles est transféré, jamais vos données personnelles ni vos requêtes DNS. Le navigateur intégré utilise le WebView système, soumis à la politique du navigateur de votre appareil."}
+    ]},
+    {h2:"7. Confidentialité des enfants",blocks:[
+      {t:"p",v:"L'application n'est pas destinée aux enfants de moins de 13 ans et ne collecte pas sciemment de données personnelles de quelque tranche d'âge que ce soit."}
+    ]},
+    {h2:"8. Vos droits",blocks:[
+      {t:"p",v:"Comme nous ne collectons ni n'envoyons de données personnelles, il n'y a pas de données serveur à supprimer ou exporter. Vous pouvez effacer toutes les données locales à tout moment en désinstallant l'application."}
+    ]},
+    {h2:"9. Modifications",blocks:[
+      {t:"p",v:"Si le traitement des données change à l'avenir, nous mettrons à jour la date d'entrée en vigueur et en informerons les utilisateurs."}
+    ]},
+    {h2:"10. Contact",blocks:[
+      {t:"p",v:"Les questions sur cette politique peuvent être envoyées via le canal de retour dans l'application ou les Issues du dépôt du projet."}
+    ]}
+  ],
+  foot:"Cette politique est fournie en chinois simplifié et en anglais. Ad Blocker · En vigueur le 2026-08-07"
+},
+
+de:{
+  title:"Datenschutzerklärung", sub:"Ad Blocker · Werbe- und Tracker-Blocker per VPN / DNS auf dem Gerät",
+  pills:["In Kraft: 2026-08-07","Verantwortlich: Ad Blocker Team","Datenminimierung"],
+  note:"Die gesamte Filterung, Statistik und Diagnose erfolgt lokal auf Ihrem Gerät. Diese App erfasst, lädt oder teilt keine personenbezogenen Daten. Es gibt kein Kontosystem, kein Werbe-SDK, kein Analyse-SDK und keinen Absturzmeldedienst.",
+  sections:[
+    {h2:"1. Übersicht",blocks:[
+      {t:"p",v:"Diese App ist ein Werbeblocker, der auf dem Gerät läuft. Sie nutzt den Android VpnService, um Werbung, Tracker und bösartige Domains auf der DNS-Ebene zu blockieren. Die gesamte Filterung, Statistik und Diagnose erfolgt lokal auf Ihrem Gerät."},
+      {t:"p",v:"Wir befolgen den Grundsatz der Datenminimierung: Diese App erfasst, lädt oder teilt keine personenbezogenen oder gerätebezogenen Daten auf einen externen Server."}
+    ]},
+    {h2:"2. Verarbeitete Daten",blocks:[
+      {t:"h3",v:"2.1 Nur lokal verarbeitete, nicht hochgeladene Daten"},
+      {t:"table",head:["Datentyp","Zweck","Speicherort","Verlässt das Gerät?"],rows:[
+        ["DNS-Abfragedomains (blockiert & erlaubt)","Lokale Regelzuordnung, Datenschutzbericht","Privater Gerätespeicher","Nein"],
+        ["Blockstatistik (Anzahl, Kategorie, Quell-App)","Datenschutzbericht anzeigen","Privater Gerätespeicher","Nein"],
+        ["Filterregeln (inkl. öff. AdGuard DNS Filter)","Blockieren","Lokaler Cache","Regeltext ist öffentlich; Ihre Abfragen werden nicht hochgeladen"],
+        ["Einstellungen (gewähltes DNS, TTL, Always-on-VPN…)","Präferenzen wiederherstellen","Lokal auf Gerät","Nein"],
+        ["Absturzprotokolle (nur lokale Datei last_crash.log)","Anzeige auf dem Gerät","Lokal auf Gerät","Nein"]
+      ]},
+      {t:"h3",v:"2.2 Daten, die wir NICHT erheben"},
+      {t:"list",v:["Namen, E-Mails, Telefonnummern","Genauer oder ungefährer Standort","Gerätekennungen (IMEI, Android ID, Werbe-ID)","Kontakte, SMS, Anrufprotokolle","Mikrofon, Kamera, Fotos, Dateiinhalte","Verhaltensprofile über Apps hinweg","Beliebige Daten zu Werbe- oder Marketingzwecken"]}
+    ]},
+    {h2:"3. Datensicherheit",blocks:[
+      {t:"p",v:"Alle Regeln, Statistiken und Einstellungen werden im privaten App-Sandbox gespeichert und sind für andere Apps nicht zugänglich. Wir betreiben keine Server, die Ihre Daten empfangen oder speichern. Lokale Daten werden im standardmäßigen Gerätespeicher gehalten. DNS-Abfragen werden nur an den von Ihnen gewählten Upstream-Resolver (Cloudflare / Google / AdGuard) weitergeleitet; der Abfrageinhalt wird niemals mit dem Entwickler geteilt."}
+    ]},
+    {h2:"4. Datenspeicherung",blocks:[
+      {t:"p",v:"Da wir keine personenbezogenen Daten an einen Server übertragen, gibt es keine serverseitige Speicherung personenbezogener Daten. Lokale Statistiken und Protokolle werden beim Löschen der App-Daten oder Deinstallieren entfernt."}
+    ]},
+    {h2:"5. Netzwerkberechtigungen",blocks:[
+      {t:"table",head:["Berechtigung","Zweck"],rows:[
+        ["INTERNET","Legitime DNS-Abfragen an gewählten Upstream-DNS weiterleiten"],
+        ["ACCESS_NETWORK_STATE","Netzwerkstatus erkennen, um VPN aufzubauen/wiederherzustellen"],
+        ["QUERY_ALL_PACKAGES","Lokale Blockstatistik nach Quell-App zuordnen (nur lokale App-Liste, nicht hochgeladen)"],
+        ["FOREGROUND_SERVICE / FOREGROUND_SERVICE_SPECIAL_USE","Lokales VPN als Vordergrund-Dienst zu Spezialzwecken ausführen"],
+        ["POST_NOTIFICATIONS","VPN-Statusbenachrichtigung anzeigen"],
+        ["RECEIVE_BOOT_COMPLETED","Blockierung nach Neustart gemäß Einstellungen wiederherstellen"]
+      ]}
+    ]},
+    {h2:"6. Drittanbieterdienste",blocks:[
+      {t:"p",v:"Diese App enthält keine Analyse-, Werbe- oder Absturzmelde-SDKs von Drittanbietern. Zum Abrufen öffentlicher Filterregeln lädt die App Regeldateien per Standard-HTTPS von Anbietern (z. B. öffentliche AdGuard-Filterlisten) herunter; dabei wird nur der Regeltext übertragen, nie Ihre personenbezogenen Daten oder DNS-Abfragen. Der integrierte Browser nutzt das systemeigene WebView und unterliegt der Richtlinie des Gerätebrowsers."}
+    ]},
+    {h2:"7. Datenschutz von Kindern",blocks:[
+      {t:"p",v:"Die App richtet sich nicht an Kinder unter 13 Jahren und erfasst wissentlich keine personenbezogenen Daten einer Altersgruppe."}
+    ]},
+    {h2:"8. Ihre Rechte",blocks:[
+      {t:"p",v:"Da wir keine personenbezogenen Daten erheben oder hochladen, gibt es keine Serverdaten zum Löschen oder Exportieren. Sie können alle lokalen Daten jederzeit durch Deinstallieren der App löschen."}
+    ]},
+    {h2:"9. Änderungen",blocks:[
+      {t:"p",v:"Ändert sich die Datenverarbeitung künftig, aktualisieren wir das Inkrafttreten und informieren die Nutzer."}
+    ]},
+    {h2:"10. Kontakt",blocks:[
+      {t:"p",v:"Fragen zu dieser Richtlinie können über den Feedback-Kanal in der App oder die Issues des Projekt-Repositories gestellt werden."}
+    ]}
+  ],
+  foot:"Diese Richtlinie liegt in vereinfachtem Chinesisch und Englisch vor. Ad Blocker · In Kraft seit 2026-08-07"
+},
+
+pt:{
+  title:"Política de Privacidade", sub:"Ad Blocker · Bloqueador de anúncios e rastreadores por VPN / DNS no dispositivo",
+  pills:["Em vigor: 2026-08-07","Responsável: Equipa Ad Blocker","Minimização de dados"],
+  note:"Toda a filtragem, estatísticas e diagnóstico são processados localmente no seu dispositivo. Esta app não recolhe, envia nem partilha quaisquer dados pessoais. Não existe sistema de contas, SDK de publicidade, SDK de analítica nem serviço de relatório de falhas.",
+  sections:[
+    {h2:"1. Resumo",blocks:[
+      {t:"p",v:"Esta app é um bloqueador de anúncios que funciona no dispositivo. Usa o VpnService do Android para bloquear anúncios, rastreadores e domínios maliciosos na camada DNS. Toda a filtragem, estatísticas e diagnóstico são processados localmente no seu dispositivo."},
+      {t:"p",v:"Seguimos o princípio da minimização de dados: esta app não recolhe, envia nem partilha quaisquer dados pessoais ou do dispositivo com qualquer servidor externo."}
+    ]},
+    {h2:"2. Dados que tratamos",blocks:[
+      {t:"h3",v:"2.1 Dados tratados apenas no dispositivo (nunca enviados)"},
+      {t:"table",head:["Dado","Finalidade","Armazenamento","Sai do dispositivo?"],rows:[
+        ["Domínios de consultas DNS (bloqueados e permitidos)","Correspondência local de regras, relatório de privacidade","Armazenamento privado do dispositivo","Não"],
+        ["Estatísticas de bloqueio (contagens, categorias, app de origem)","Mostrar relatório de privacidade","Armazenamento privado do dispositivo","Não"],
+        ["Regras de filtragem (incl. AdGuard DNS Filter público)","Bloquear","Cache local","O texto de regras é público; as suas consultas não são enviadas"],
+        ["Definições (DNS escolhido, TTL, VPN sempre ativa…)","Restaurar preferências","Local do dispositivo","Não"],
+        ["Registos de falhas (apenas ficheiro local last_crash.log)","Visualização no dispositivo","Local do dispositivo","Não"]
+      ]},
+      {t:"h3",v:"2.2 Dados que NÃO recolhemos"},
+      {t:"list",v:["Nomes, e-mails, números de telefone","Localização precisa ou aproximada","Identificadores de dispositivo (IMEI, Android ID, ID de publicidade)","Contactos, SMS, registos de chamadas","Microfone, câmara, fotografias, conteúdo de ficheiros","Perfis comportamentais entre apps","Quaisquer dados para fins publicitários ou de marketing"]}
+    ]},
+    {h2:"3. Segurança dos dados",blocks:[
+      {t:"p",v:"Todas as regras, estatísticas e definições são guardadas no sandbox privado da app, inacessível a outras apps. Não operamos servidores que recebam ou armazenem os seus dados. Os dados locais são mantidos no armazenamento padrão do dispositivo. As consultas DNS são encaminhadas apenas para o resolvedor ascendente que escolher (Cloudflare / Google / AdGuard); o conteúdo das consultas nunca é partilhado com o programador."}
+    ]},
+    {h2:"4. Retenção de dados",blocks:[
+      {t:"p",v:"Como não transmitimos quaisquer dados pessoais a qualquer servidor, não há retenção de dados pessoais no servidor. As estatísticas e registos locais são removidos ao limpar os dados da app ou desinstalá-la."}
+    ]},
+    {h2:"5. Permissões de rede",blocks:[
+      {t:"table",head:["Permissão","Finalidade"],rows:[
+        ["INTERNET","Reencaminhar consultas DNS legítimas para o DNS ascendente escolhido"],
+        ["ACCESS_NETWORK_STATE","Detetar o estado da rede para estabelecer/restaurar a VPN"],
+        ["QUERY_ALL_PACKAGES","Atribuir estatísticas de bloqueio locais por app de origem (apenas leitura local da lista de apps, não enviada)"],
+        ["FOREGROUND_SERVICE / FOREGROUND_SERVICE_SPECIAL_USE","Executar a VPN local como serviço em primeiro plano de uso especial"],
+        ["POST_NOTIFICATIONS","Mostrar notificação do estado da VPN"],
+        ["RECEIVE_BOOT_COMPLETED","Restaurar o bloqueio após reinício conforme as suas definições"]
+      ]}
+    ]},
+    {h2:"6. Serviços de terceiros",blocks:[
+      {t:"p",v:"Esta app não contém SDK de analítica, publicidade ou relatório de falhas de terceiros. Para obter regras de filtragem públicas, a app descarrega ficheiros de regras via HTTPS padrão a partir de fornecedores (ex.: listas públicas de filtros AdGuard); apenas o texto de regras é transferido, nunca os seus dados pessoais nem as suas consultas DNS. O navegador integrado usa o WebView do sistema, sujeito à política do navegador do seu dispositivo."}
+    ]},
+    {h2:"7. Privacidade de menores",blocks:[
+      {t:"p",v:"A app não se destina a crianças menores de 13 anos e não recolhe conscientemente dados pessoais de qualquer faixa etária."}
+    ]},
+    {h2:"8. Os seus direitos",blocks:[
+      {t:"p",v:"Como não recolhemos nem enviamos dados pessoais, não há dados de servidor para eliminar ou exportar. Pode limpar todos os dados locais a qualquer momento desinstalando a app."}
+    ]},
+    {h2:"9. Alterações",blocks:[
+      {t:"p",v:"Se o tratamento de dados mudar no futuro, atualizaremos a data de entrada em vigor e informaremos os utilizadores."}
+    ]},
+    {h2:"10. Contacto",blocks:[
+      {t:"p",v:"Dúvidas sobre esta política podem ser enviadas pelo canal de feedback na app ou pelas Issues do repositório do projeto."}
+    ]}
+  ],
+  foot:"Esta política é fornecida em chinês simplificado e inglês. Ad Blocker · Em vigor desde 2026-08-07"
+},
+
+pt_BR:{
+  title:"Política de Privacidade", sub:"Ad Blocker · Bloqueador de anúncios e rastreadores por VPN / DNS no dispositivo",
+  pills:["Em vigor: 2026-08-07","Responsável: Equipe Ad Blocker","Minimização de dados"],
+  note:"Toda a filtragem, estatísticas e diagnóstico são processados localmente no seu dispositivo. Este app não coleta, envia nem compartilha quaisquer dados pessoais. Não existe sistema de contas, SDK de publicidade, SDK de analítica nem serviço de relatório de falhas.",
+  sections:[
+    {h2:"1. Resumo",blocks:[
+      {t:"p",v:"Este app é um bloqueador de anúncios que funciona no dispositivo. Usa o VpnService do Android para bloquear anúncios, rastreadores e domínios maliciosos na camada DNS. Toda a filtragem, estatísticas e diagnóstico são processados localmente no seu dispositivo."},
+      {t:"p",v:"Seguimos o princípio da minimização de dados: este app não coleta, envia nem compartilha quaisquer dados pessoais ou do dispositivo com qualquer servidor externo."}
+    ]},
+    {h2:"2. Dados que tratamos",blocks:[
+      {t:"h3",v:"2.1 Dados tratados apenas no dispositivo (nunca enviados)"},
+      {t:"table",head:["Dado","Finalidade","Armazenamento","Sai do dispositivo?"],rows:[
+        ["Domínios de consultas DNS (bloqueados e permitidos)","Correspondência local de regras, relatório de privacidade","Armazenamento privado do dispositivo","Não"],
+        ["Estatísticas de bloqueio (contagens, categorias, app de origem)","Mostrar relatório de privacidade","Armazenamento privado do dispositivo","Não"],
+        ["Regras de filtragem (incl. AdGuard DNS Filter público)","Bloquear","Cache local","O texto de regras é público; suas consultas não são enviadas"],
+        ["Configurações (DNS escolhido, TTL, VPN sempre ativa…)","Restaurar preferências","Local do dispositivo","Não"],
+        ["Registros de falhas (apenas arquivo local last_crash.log)","Visualização no dispositivo","Local do dispositivo","Não"]
+      ]},
+      {t:"h3",v:"2.2 Dados que NÃO coletamos"},
+      {t:"list",v:["Nomes, e-mails, números de telefone","Localização precisa ou aproximada","Identificadores de dispositivo (IMEI, Android ID, ID de publicidade)","Contatos, SMS, registros de chamadas","Microfone, câmera, fotos, conteúdo de arquivos","Perfis comportamentais entre apps","Quaisquer dados para fins publicitários ou de marketing"]}
+    ]},
+    {h2:"3. Segurança dos dados",blocks:[
+      {t:"p",v:"Todas as regras, estatísticas e configurações são guardadas no sandbox privado do app, inacessível a outros apps. Não operamos servidores que recebam ou armazenem seus dados. Os dados locais são mantidos no armazenamento padrão do dispositivo. As consultas DNS são encaminhadas apenas para o resolvedor de upstream que você escolher (Cloudflare / Google / AdGuard); o conteúdo das consultas nunca é compartilhado com o desenvolvedor."}
+    ]},
+    {h2:"4. Retenção de dados",blocks:[
+      {t:"p",v:"Como não transmitimos quaisquer dados pessoais a qualquer servidor, não há retenção de dados pessoais no servidor. As estatísticas e registros locais são removidos ao limpar os dados do app ou desinstalá-lo."}
+    ]},
+    {h2:"5. Permissões de rede",blocks:[
+      {t:"table",head:["Permissão","Finalidade"],rows:[
+        ["INTERNET","Encaminhar consultas DNS legítimas para o DNS de upstream escolhido"],
+        ["ACCESS_NETWORK_STATE","Detectar o estado da rede para estabelecer/restaurar a VPN"],
+        ["QUERY_ALL_PACKAGES","Atribuir estatísticas de bloqueio locais por app de origem (apenas leitura local da lista de apps, não enviada)"],
+        ["FOREGROUND_SERVICE / FOREGROUND_SERVICE_SPECIAL_USE","Executar a VPN local como serviço em primeiro plano de uso especial"],
+        ["POST_NOTIFICATIONS","Mostrar notificação do estado da VPN"],
+        ["RECEIVE_BOOT_COMPLETED","Restaurar o bloqueio após reinício conforme suas configurações"]
+      ]}
+    ]},
+    {h2:"6. Serviços de terceiros",blocks:[
+      {t:"p",v:"Este app não contém SDK de analítica, publicidade ou relatório de falhas de terceiros. Para obter regras de filtragem públicas, o app baixa arquivos de regras via HTTPS padrão a partir de fornecedores (ex.: listas públicas de filtros AdGuard); apenas o texto de regras é transferido, nunca seus dados pessoais nem suas consultas DNS. O navegador integrado usa o WebView do sistema, sujeito à política do navegador do seu dispositivo."}
+    ]},
+    {h2:"7. Privacidade de menores",blocks:[
+      {t:"p",v:"O app não se destina a crianças menores de 13 anos e não coleta conscientemente dados pessoais de qualquer faixa etária."}
+    ]},
+    {h2:"8. Seus direitos",blocks:[
+      {t:"p",v:"Como não coletamos nem enviamos dados pessoais, não há dados de servidor para excluir ou exportar. Você pode limpar todos os dados locais a qualquer momento desinstalando o app."}
+    ]},
+    {h2:"9. Alterações",blocks:[
+      {t:"p",v:"Se o tratamento de dados mudar no futuro, atualizaremos a data de entrada em vigor e informaremos os usuários."}
+    ]},
+    {h2:"10. Contato",blocks:[
+      {t:"p",v:"Dúvidas sobre esta política podem ser enviadas pelo canal de feedback no app ou pelas Issues do repositório do projeto."}
+    ]}
+  ],
+  foot:"Esta política é fornecida em chinês simplificado e inglês. Ad Blocker · Em vigor desde 2026-08-07"
+},
+
+it:{
+  title:"Informativa sulla Privacy", sub:"Ad Blocker · Bloccatore di annunci e tracker tramite VPN / DNS sul dispositivo",
+  pills:["In vigore: 2026-08-07","Titolare: Team Ad Blocker","Minimizzazione dei dati"],
+  note:"Tutto il filtraggio, le statistiche e la diagnostica sono elaborati localmente sul tuo dispositivo. Questa app non raccoglie, carica né condivide alcun dato personale. Non esiste un sistema di account, SDK pubblicitario, SDK di analisi né servizio di segnalazione crash.",
+  sections:[
+    {h2:"1. Panoramica",blocks:[
+      {t:"p",v:"Questa app è un blocco annunci che funziona sul dispositivo. Usa il VpnService di Android per bloccare annunci, tracker e domini malevoli a livello DNS. Tutto il filtraggio, le statistiche e la diagnostica sono elaborati localmente sul tuo dispositivo."},
+      {t:"p",v:"Seguiamo il principio della minimizzazione dei dati: questa app non raccoglie, carica né condivide alcun dato personale o del dispositivo con alcun server esterno."}
+    ]},
+    {h2:"2. Dati trattati",blocks:[
+      {t:"h3",v:"2.1 Dati trattati solo sul dispositivo (mai caricati)"},
+      {t:"table",head:["Dato","Scopo","Archiviazione","Esce dal dispositivo?"],rows:[
+        ["Domini delle query DNS (bloccati e consentiti)","Corrispondenza locale delle regole, report privacy","Archiviazione privata del dispositivo","No"],
+        ["Statistiche di blocco (conteggi, categorie, app origine)","Mostrare il report privacy","Archiviazione privata del dispositivo","No"],
+        ["Regole di filtro (incl. AdGuard DNS Filter pubblico)","Bloccare","Cache locale","Il testo delle regole è pubblico; le tue query non sono caricate"],
+        ["Impostazioni (DNS scelto, TTL, VPN sempre attiva…)","Ripristinare le preferenze","Locale del dispositivo","No"],
+        ["Log di crash (solo file locale last_crash.log)","Visualizzazione sul dispositivo","Locale del dispositivo","No"]
+      ]},
+      {t:"h3",v:"2.2 Dati che NON raccogliamo"},
+      {t:"list",v:["Nomi, email, numeri di telefono","Posizione precisa o approssimativa","Identificatori del dispositivo (IMEI, Android ID, ID pubblicitario)","Contatti, SMS, registri delle chiamate","Microfono, fotocamera, foto, contenuti di file","Profili comportamentali tra app","Qualsiasi dato per scopi pubblicitari o di marketing"]}
+    ]},
+    {h2:"3. Sicurezza dei dati",blocks:[
+      {t:"p",v:"Tutte le regole, statistiche e impostazioni sono salvate nel sandbox privato dell'app, inaccessibile ad altre app. Non gestiamo server che ricevano o memorizzino i tuoi dati. I dati locali sono conservati nella memoria standard del dispositivo. Le query DNS sono inoltrate solo al resolver upstream scelto (Cloudflare / Google / AdGuard); il contenuto delle query non è mai condiviso con lo sviluppatore."}
+    ]},
+    {h2:"4. Conservazione dei dati",blocks:[
+      {t:"p",v:"Poiché non trasmettiamo alcun dato personale a un server, non esiste conservazione di dati personali lato server. Statistiche e log locali sono rimossi cancellando i dati dell'app o disinstallandola."}
+    ]},
+    {h2:"5. Autorizzazioni di rete",blocks:[
+      {t:"table",head:["Autorizzazione","Scopo"],rows:[
+        ["INTERNET","Inoltrare query DNS legittime al DNS upstream scelto"],
+        ["ACCESS_NETWORK_STATE","Rilevare lo stato della rete per stabilire/ripristinare la VPN"],
+        ["QUERY_ALL_PACKAGES","Attribuire statistiche di blocco locali per app di origine (solo lettura locale dell'elenco app, non caricato)"],
+        ["FOREGROUND_SERVICE / FOREGROUND_SERVICE_SPECIAL_USE","Eseguire la VPN locale come servizio in primo piano ad uso speciale"],
+        ["POST_NOTIFICATIONS","Mostrare la notifica di stato della VPN"],
+        ["RECEIVE_BOOT_COMPLETED","Ripristinare il blocco dopo il riavvio secondo le tue impostazioni"]
+      ]}
+    ]},
+    {h2:"6. Servizi di terze parti",blocks:[
+      {t:"p",v:"Questa app non contiene SDK di analisi, pubblicitari o di segnalazione crash di terze parti. Per ottenere regole di filtro pubbliche, l'app scarica file di regole tramite HTTPS standard dai fornitori (es. elenchi pubblici di filtri AdGuard); viene trasferito solo il testo delle regole, mai i tuoi dati personali o le tue query DNS. Il browser integrato usa il WebView di sistema, soggetto alla politica del browser del dispositivo."}
+    ]},
+    {h2:"7. Privacy dei minori",blocks:[
+      {t:"p",v:"L'app non è destinata a minori di 13 anni e non raccoglie consapevolmente dati personali di alcuna fascia di età."}
+    ]},
+    {h2:"8. I tuoi diritti",blocks:[
+      {t:"p",v:"Poiché non raccogliamo né carichiamo dati personali, non ci sono dati server da eliminare o esportare. Puoi cancellare tutti i dati locali in qualsiasi momento disinstallando l'app."}
+    ]},
+    {h2:"9. Modifiche",blocks:[
+      {t:"p",v:"Se il trattamento dei dati cambierà in futuro, aggiorneremo la data di entrata in vigore e informeremo gli utenti."}
+    ]},
+    {h2:"10. Contatti",blocks:[
+      {t:"p",v:"Eventuali domande su questa informativa possono essere inviate tramite il canale di feedback nell'app o le Issues del repository del progetto."}
+    ]}
+  ],
+  foot:"Questa informativa è fornita in cinese semplificato e inglese. Ad Blocker · In vigore dal 2026-08-07"
+},
+
+ru:{
+  title:"Политика конфиденциальности", sub:"Ad Blocker · Блокировщик рекламы и трекеров через VPN / DNS на устройстве",
+  pills:["Действует с: 2026-08-07","Ответственный: Команда Ad Blocker","Минимизация данных"],
+  note:"Вся фильтрация, статистика и диагностика обрабатываются локально на вашем устройстве. Это приложение не собирает, не загружает и не передаёт никакие персональные данные. В нём нет системы учётных записей, рекламного SDK, аналитического SDK и сервиса отчётов о сбоях.",
+  sections:[
+    {h2:"1. Обзор",blocks:[
+      {t:"p",v:"Это приложение — блокировщик рекламы, работающий на устройстве. Оно использует Android VpnService для блокировки рекламы, трекеров и вредоносных доменов на уровне DNS. Вся фильтрация, статистика и диагностика обрабатываются локально на вашем устройстве."},
+      {t:"p",v:"Мы придерживаемся принципа минимизации данных: это приложение не собирает, не загружает и не передаёт никакие персональные или устройственные данные на внешний сервер."}
+    ]},
+    {h2:"2. Обрабатываемые данные",blocks:[
+      {t:"h3",v:"2.1 Данные, обрабатываемые только на устройстве (никогда не загружаются)"},
+      {t:"table",head:["Тип данных","Назначение","Место хранения","Покидают устройство?"],rows:[
+        ["Домены DNS-запросов (заблокированные и разрешённые)","Локальное сопоставление правил, отчёт о приватности","Частое хранилище устройства","Нет"],
+        ["Статистика блокировок (число, категории, исходное приложение)","Показ отчёта о приватности","Частое хранилище устройства","Нет"],
+        ["Правила фильтрации (вкл. публичный AdGuard DNS Filter)","Блокировка","Локальный кэш","Текст правил публичный; ваши запросы не загружаются"],
+        ["Настройки (выбранный DNS, TTL, всегда включённый VPN…)","Восстановление предпочтений","Локально на устройстве","Нет"],
+        ["Журналы сбоев (только локальный файл last_crash.log)","Просмотр на устройстве","Локально на устройстве","Нет"]
+      ]},
+      {t:"h3",v:"2.2 Данные, которые мы НЕ собираем"},
+      {t:"list",v:["Имена, эл. почта, номера телефонов","Точное или приблизительное местоположение","Идентификаторы устройства (IMEI, Android ID, рекламный ID)","Контакты, SMS, журналы вызовов","Микрофон, камера, фото, содержимое файлов","Поведенческие профили между приложениями","Любые данные в рекламных или маркетинговых целях"]}
+    ]},
+    {h2:"3. Безопасность данных",blocks:[
+      {t:"p",v:"Все правила, статистика и настройки хранятся в частесном песочнице приложения, недоступной для других приложений. Мы не эксплуатируем серверы, которые получают или хранят ваши данные. Локальные данные сохраняются в стандартном хранилище устройства. DNS-запросы перенаправляются только выбранному вами вышестоящему резолверу (Cloudflare / Google / AdGuard); содержимое запросов никогда не передаётся разработчику."}
+    ]},
+    {h2:"4. Хранение данных",blocks:[
+      {t:"p",v:"Поскольку мы не передаём никакие персональные данные на сервер, серверного хранения персональных данных не существует. Локальная статистика и журналы удаляются при очистке данных приложения или его удалении."}
+    ]},
+    {h2:"5. Сетевые разрешения",blocks:[
+      {t:"table",head:["Разрешение","Назначение"],rows:[
+        ["INTERNET","Перенаправление легитимных DNS-запросов выбранному вышестоящему DNS"],
+        ["ACCESS_NETWORK_STATE","Обнаружение состояния сети для установки/восстановления VPN"],
+        ["QUERY_ALL_PACKAGES","Отнесение локальной статистики блокировок к исходному приложению (только локальное чтение списка приложений, не загружается)"],
+        ["FOREGROUND_SERVICE / FOREGROUND_SERVICE_SPECIAL_USE","Запуск локальной VPN как службы переднего плана специального назначения"],
+        ["POST_NOTIFICATIONS","Показ уведомления о состоянии VPN"],
+        ["RECEIVE_BOOT_COMPLETED","Восстановление блокировки после перезагрузки согласно вашим настройкам"]
+      ]}
+    ]},
+    {h2:"6. Сторонние сервисы",blocks:[
+      {t:"p",v:"В этом приложении нет сторонних SDK аналитики, рекламы или отчётов о сбоях. Для получения публичных правил фильтрации приложение загружает файлы правил по стандартному HTTPS от поставщиков (напр., публичные списки фильтров AdGuard); передаётся только текст правил, никогда ваши персональные данные или DNS-запросы. Встроенный браузер использует системный WebView и подчиняется политике браузера вашего устройства."}
+    ]},
+    {h2:"7. Конфиденциальность детей",blocks:[
+      {t:"p",v:"Приложение не предназначено для детей младше 13 лет и не собирает осознанно персональные данные какой-либо возрастной группы."}
+    ]},
+    {h2:"8. Ваши права",blocks:[
+      {t:"p",v:"Поскольку мы не собираем и не загружаем персональные данные, нет серверных данных для удаления или экспорта. Вы можете удалить все локальные данные в любой момент, удалив приложение."}
+    ]},
+    {h2:"9. Изменения политики",blocks:[
+      {t:"p",v:"Если в будущем способ обработки данных изменится, мы обновим дату вступления в силу и уведомим пользователей."}
+    ]},
+    {h2:"10. Контакты",blocks:[
+      {t:"p",v:"Вопросы по этой политике можно направлять через канал обратной связи в приложении или через Issues репозитория проекта."}
+    ]}
+  ],
+  foot:"Данная политика предоставляется на упрощённом китайском и английском языках. Ad Blocker · Действует с 2026-08-07"
+},
+
+ar:{
+  title:"سياسة الخصوصية", sub:"Ad Blocker · أداة حظر الإعلانات والمتتبعات عبر VPN / DNS على الجهاز",
+  pills:["سارية من: 2026-08-07","المسؤول: فريق Ad Blocker","تقليل البيانات"],
+  note:"تتم معالجة جميع عمليات التصفية والإحصاءات والتشخيص محليًا على جهازك. لا يجمع هذا التطبيق أو يرفع أو يشارك أي بيانات شخصية. لا يوجد نظام حسابات أو SDK إعلاني أو SDK تحليلي أو خدمة إبلاغ عن الأعطال.",
+  sections:[
+    {h2:"1. نظرة عامة",blocks:[
+      {t:"p",v:"هذا التطبيق هو أداة حظر إعلانات تعمل على جهازك. يستخدم VpnService من Android لحظر الإعلانات والمتتبعات والنطاقات الخبيثة على مستوى DNS. تتم معالجة جميع عمليات التصفية والإحصاءات والتشخيص محليًا على جهازك."},
+      {t:"p",v:"نتبع مبدأ تقليل البيانات: لا يجمع هذا التطبيق أو يرفع أو يشارك أي بيانات شخصية أو خاصة بالجهاز مع أي خادم خارجي."}
+    ]},
+    {h2:"2. البيانات التي نعالجها",blocks:[
+      {t:"h3",v:"2.1 بيانات تُعالج محليًا على الجهاز فقط (لا تُرفع أبدًا)"},
+      {t:"table",head:["نوع البيانات","الغرض","موقع التخزين","هل تغادر الجهاز؟"],rows:[
+        ["نطاقات استعلامات DNS (المحظورة والمسموح بها)","مطابقة القواعد محليًا، تقرير الخصوصية","تخزين خاص على الجهاز","لا"],
+        ["إحصاءات الحظر (العدد، الفئة، التطبيق المصدر)","عرض تقرير الخصوصية","تخزين خاص على الجهاز","لا"],
+        ["قواعد التصفية (بما فيها AdGuard DNS Filter العام)","الحظر","ذاكرة تخزين مؤقت محلية","نص القواعد من مصدر عام؛ لا تُرفع استعلاماتك"],
+        ["الإعدادات (DNS المختار، TTL، تشغيل VPN الدائم…)","استعادة التفضيلات","محليًا على الجهاز","لا"],
+        ["سجلات الأعطال (ملف محلي last_crash.log فقط)","العرض على الجهاز","محليًا على الجهاز","لا"]
+      ]},
+      {t:"h3",v:"2.2 البيانات التي لا نجمعها"},
+      {t:"list",v:["الأسماء والبريد الإلكتروني وأرقام الهاتف","الموقع الدقيق أو التقريبي","معرفات الجهاز (IMEI، Android ID، معرّف الإعلانات)","جهات الاتصال والرسائل وسجلات المكالمات","الميكروفون والكاميرا والصور ومحتوى الملفات","الملفات الشخصية للسلوك عبر التطبيقات","أي بيانات لأغراض إعلانية أو تسويقية"]}
+    ]},
+    {h2:"3. أمان البيانات",blocks:[
+      {t:"p",v:"يتم تخزين جميع القواعد والإحصاءات والإعدادات في صندوق الرمل الخاص بالتطبيق، غير متاح لتطبيقات أخرى. لا نشغّل خوادم تستقبل أو تخزن بياناتك. تُحفظ البيانات المحلية في التخزين القياسي للجهاز. تُعاد توجيه استعلامات DNS فقط إلى محلل المستوى الأعلى الذي تختاره (Cloudflare / Google / AdGuard)؛ ولا تُشارك محتويات الاستعلامات مع المطوّر أبدًا."}
+    ]},
+    {h2:"4. الاحتفاظ بالبيانات",blocks:[
+      {t:"p",v:"بما أننا لا ننقل أي بيانات شخصية إلى أي خادم، فلا يوجد احتفاظ ببيانات شخصية على الخادم. تُزال الإحصاءات والسجلات المحلية عند مسح بيانات التطبيق أو إزالته."}
+    ]},
+    {h2:"5. أذونات الشبكة",blocks:[
+      {t:"table",head:["الإذن","الغرض"],rows:[
+        ["INTERNET","إعادة توجيه استعلامات DNS المشروعة إلى خادم DNS العلوي الذي تختاره"],
+        ["ACCESS_NETWORK_STATE","كشف حالة الشبكة لإنشاء/استعادة VPN"],
+        ["QUERY_ALL_PACKAGES","إسناد إحصاءات الحظر المحلية حسب التطبيق المصدر (قراءة محلية لقائمة التطبيقات فقط، لا تُرفع)"],
+        ["FOREGROUND_SERVICE / FOREGROUND_SERVICE_SPECIAL_USE","تشغيل VPN المحلي كخدمة أمامية غرض خاص"],
+        ["POST_NOTIFICATIONS","عرض إشعار حالة VPN"],
+        ["RECEIVE_BOOT_COMPLETED","استعادة الحظر بعد إعادة التشغيل حسب إعداداتك"]
+      ]}
+    ]},
+    {h2:"6. خدمات الأطراف الثالثة",blocks:[
+      {t:"p",v:"لا يحتوي هذا التطبيق على أي SDK تحليلي أو إعلاني أو للإبلاغ عن الأعطال من أطراف ثالثة. للحصول على قواعد تصفية عامة، يقوم التطبيق بتنزيل ملفات القواعد عبر HTTPS قياسي من مزودي الخدمة (مثل قوائم تصفية AdGuard العامة)؛ يُنقل نص القواعد فقط، ولا تُنقل بياناتك الشخصية أو استعلامات DNS أبدًا. يستخدم المتصفح المدمج WebView الخاص بالنظام، ويخضع لسياسة متصفح جهازك."}
+    ]},
+    {h2:"7. خصوصية الأطفال",blocks:[
+      {t:"p",v:"التطبيق غير موجّه للأطفال دون سن 13 عامًا ولا يجمع عمدًا بيانات شخصية من أي فئة عمرية."}
+    ]},
+    {h2:"8. حقوقك",blocks:[
+      {t:"p",v:"بما أننا لا نجمع أو نرفع أي بيانات شخصية، فلا توجد بيانات خادم لحذفها أو تصديرها. يمكنك مسح جميع البيانات المحلية في أي وقت بإزالة التطبيق."}
+    ]},
+    {h2:"9. تغييرات السياسة",blocks:[
+      {t:"p",v:"إذا تغيّرت معالجة البيانات في المستقبل، سنحدّث تاريخ السريان ونبلغ المستخدمين."}
+    ]},
+    {h2:"10. التواصل",blocks:[
+      {t:"p",v:"يمكن إرسال الأسئلة حول هذه السياسة عبر قناة الملاحظات داخل التطبيق أو عبر Issues في مستودع المشروع."}
+    ]}
+  ],
+  foot:"هذه السياسة متاحة بالصينية المبسطة والإنجليزية. Ad Blocker · سارية من 2026-08-07"
+},
+
+hi:{
+  title:"गोपनीयता नीति", sub:"Ad Blocker · डिवाइस पर VPN / DNS द्वारा विज्ञापन और ट्रैकर ब्लॉकर",
+  pills:["प्रभावी: 2026-08-07","जिम्मेदार: Ad Blocker टीम","डेटा न्यूनीकरण"],
+  note:"सभी फ़िल्टरिंग, आँकड़े और निदान आपके डिवाइस पर स्थानीय रूप से संसाधित होते हैं। यह ऐप कोई भी व्यक्तिगत डेटा एकत्र, अपलोड या साझा नहीं करता। इसमें कोई खाता प्रणाली, विज्ञापन SDK, एनालिटिक्स SDK या क्रैश रिपोर्टिंग सेवा नहीं है।",
+  sections:[
+    {h2:"1. अवलोकन",blocks:[
+      {t:"p",v:"यह ऐप एक विज्ञापन ब्लॉकर है जो आपके डिवाइस पर चलता है। यह विज्ञापनों, ट्रैकरों और दुर्भावनापूर्ण डोमेन को DNS परत पर ब्लॉक करने के लिए Android VpnService का उपयोग करता है। सभी फ़िल्टरिंग, आँकड़े और निदान आपके डिवाइस पर स्थानीय रूप से संसाधित होते हैं।"},
+      {t:"p",v:"हम 'डेटा न्यूनीकरण' के सिद्धांत का पालन करते हैं: यह ऐप किसी भी व्यक्तिगत या डिवाइस डेटा को किसी बाहरी सर्वर पर एकत्र, अपलोड या साझा नहीं करता।"}
+    ]},
+    {h2:"2. जो डेटा हम संसाधित करते हैं",blocks:[
+      {t:"h3",v:"2.1 केवल डिवाइस पर स्थानीय रूप से संसाधित, अपलोड न किए गए डेटा"},
+      {t:"table",head:["डेटा प्रकार","उद्देश्य","भंडारण स्थान","क्या डिवाइस छोड़ता है?"],rows:[
+        ["DNS क्वेरी डोमेन (ब्लॉक और अनुमत)","स्थानीय नियम मिलान, गोपनीयता रिपोर्ट","डिवाइस निजी भंडारण","नहीं"],
+        ["ब्लॉक आँकड़े (गिनती, श्रेणी, स्रोत ऐप)","गोपनीयता रिपोर्ट दिखाएँ","डिवाइस निजी भंडारण","नहीं"],
+        ["फ़िल्टर नियम (सार्वजनिक AdGuard DNS Filter सहित)","ब्लॉक करना","स्थानीय कैश","नियम पाठ सार्वजनिक है; आपकी क्वेरी अपलोड नहीं होती"],
+        ["सेटिंग्स (चयनित DNS, TTL, हमेशा चालू VPN…)","प्राथमिकताएँ पुनर्स्थापित करें","डिवाइस पर स्थानीय","नहीं"],
+        ["क्रैश लॉग (केवल स्थानीय फ़ाइल last_crash.log)","डिवाइस पर देखने हेतु","डिवाइस पर स्थानीय","नहीं"]
+      ]},
+      {t:"h3",v:"2.2 डेटा जो हम एकत्र नहीं करते"},
+      {t:"list",v:["नाम, ईमेल, फ़ोन नंबर जैसी पहचान","सटीक या अनुमानित स्थान","डिवाइस पहचानकर्ता (IMEI, Android ID, विज्ञापन ID)","संपर्क, SMS, कॉल लॉग","माइक्रोफ़ोन, कैमरा, फ़ोटो, फ़ाइल सामग्री","ऐप्स के बीच व्यवहार प्रोफ़ाइल","विज्ञापन या मार्केटिंग उद्देश्यों के लिए कोई डेटा"]}
+    ]},
+    {h2:"3. डेटा सुरक्षा",blocks:[
+      {t:"p",v:"सभी नियम, आँकड़े और सेटिंग्स ऐप के निजी सैंडबॉक्स में संग्रहीत होते हैं, जिन्हें अन्य ऐप्स एक्सेस नहीं कर सकते। हम कोई ऐसा सर्वर नहीं चलाते जो आपका डेटा प्राप्त या संग्रहीत करे। स्थानीय डेटा डिवाइस के मानक भंडारण में रखा जाता है। DNS क्वेरी केवल आपके चुने हुए अपस्ट्रीम रिज़ॉल्वर (Cloudflare / Google / AdGuard) को भेजी जाती हैं; क्वेरी सामग्री कभी डेवलपर के साथ साझा नहीं की जाती।"}
+    ]},
+    {h2:"4. डेटा प्रतिधारण",blocks:[
+      {t:"p",v:"चूँकि हम किसी भी व्यक्तिगत डेटा को सर्वर पर नहीं भेजते, इसलिए सर्वर पर कोई व्यक्तिगत डेटा प्रतिधारण नहीं है। स्थानीय आँकड़े और लॉग ऐप डेटा साफ़ करने या ऐप अनइंस्टॉल करने पर हटा दिए जाते हैं।"}
+    ]},
+    {h2:"5. नेटवर्क अनुमतियाँ",blocks:[
+      {t:"table",head:["अनुमति","उद्देश्य"],rows:[
+        ["INTERNET","वैध DNS क्वेरी को आपके चुने हुए अपस्ट्रीम DNS पर भेजना"],
+        ["ACCESS_NETWORK_STATE","VPN स्थापित/पुनर्स्थापित करने के लिए नेटवर्क स्थिति का पता लगाना"],
+        ["QUERY_ALL_PACKAGES","स्रोत ऐप के अनुसार स्थानीय ब्लॉक आँकड़े सौंपना (केवल स्थानीय ऐप सूची पठन, अपलोड नहीं)"],
+        ["FOREGROUND_SERVICE / FOREGROUND_SERVICE_SPECIAL_USE","स्थानीय VPN को विशेष-उपयोग फ़ोरग्राउंड सेवा के रूप में चलाना"],
+        ["POST_NOTIFICATIONS","VPN स्थिति अधिसूचना दिखाना"],
+        ["RECEIVE_BOOT_COMPLETED","पुनः प्रारंभ के बाद आपकी सेटिंग्स के अनुसार ब्लॉक पुनर्स्थापित करना"]
+      ]}
+    ]},
+    {h2:"6. तृतीय-पक्ष सेवाएँ",blocks:[
+      {t:"p",v:"इस ऐप में कोई तृतीय-पक्ष एनालिटिक्स, विज्ञापन या क्रैश रिपोर्टिंग SDK नहीं है। सार्वजनिक फ़िल्टर नियम प्राप्त करने के लिए, ऐप प्रदाताओं (जैसे AdGuard सार्वजनिक फ़िल्टर सूचियाँ) से मानक HTTPS के माध्यम से नियम फ़ाइलें डाउनलोड करता है; केवल नियम पाठ स्थानांतरित होता है, कभी आपका व्यक्तिगत डेटा या DNS क्वेरी नहीं। अंतर्निहित ब्राउज़र सिस्टम WebView का उपयोग करता है, जो आपके डिवाइस ब्राउज़र की नीति के अधीन है।"}
+    ]},
+    {h2:"7. बच्चों की गोपनीयता",blocks:[
+      {t:"p",v:"यह ऐप 13 वर्ष से कम उम्र के बच्चों के लिए नहीं है और यह किसी भी आयु वर्ग का जानबूझकर व्यक्तिगत डेटा एकत्र नहीं करता।"}
+    ]},
+    {h2:"8. आपके अधिकार",blocks:[
+      {t:"p",v:"चूँकि हम कोई व्यक्तिगत डेटा एकत्र या अपलोड नहीं करते, इसलिए सर्वर डेटा हटाने या निर्यात करने का कोई प्रश्न ही नहीं है। आप ऐप अनइंस्टॉल करके कभी भी सभी स्थानीय डेटा साफ़ कर सकते हैं।"}
+    ]},
+    {h2:"9. नीति में बदलाव",blocks:[
+      {t:"p",v:"यदि भविष्य में डेटा प्रसंस्करण बदलता है, तो हम प्रभावी तिथि अपडेट करेंगे और उपयोगकर्ताओं को सूचित करेंगे।"}
+    ]},
+    {h2:"10. संपर्क",blocks:[
+      {t:"p",v:"इस नीति के बारे में प्रश्न ऐप के फ़ीडबैक चैनल या प्रोजेक्ट रिपॉज़िटरी की Issues के माध्यम से भेजे जा सकते हैं।"}
+    ]}
+  ],
+  foot:"यह नीति सरलीकृत चीनी और अंग्रेज़ी में उपलब्ध है। Ad Blocker · प्रभावी 2026-08-07"
+},
+
+nl:{
+  title:"Privacybeleid", sub:"Ad Blocker · Advertentie- en trackerblokkering via VPN / DNS op het apparaat",
+  pills:["Van kracht: 2026-08-07","Verantwoordelijke: Ad Blocker-team","Gegevensminimalisatie"],
+  note:"Alle filtering, statistieken en diagnostiek worden lokaal op uw apparaat verwerkt. Deze app verzamelt, uploadt of deelt geen enkele persoonsgegeven. Er is geen accountsysteem, geen advertentie-SDK, geen analys-SDK en geen crashrapportageservice.",
+  sections:[
+    {h2:"1. Overzicht",blocks:[
+      {t:"p",v:"Deze app is een advertentieblokkering die op het apparaat werkt. Hij gebruikt de Android VpnService om advertenties, trackers en kwaadaardige domeinen op DNS-niveau te blokkeren. Alle filtering, statistieken en diagnostiek worden lokaal op uw apparaat verwerkt."},
+      {t:"p",v:"Wij hanteren het principe van gegevensminimalisatie: deze app verzamelt, uploadt of deelt geen enkele persoonlijke of apparaatgegevens met een externe server."}
+    ]},
+    {h2:"2. Gegevens die wij verwerken",blocks:[
+      {t:"h3",v:"2.1 Alleen lokaal op het apparaat verwerkte, niet geüploade gegevens"},
+      {t:"table",head:["Gegevenstype","Doel","Opslag","Verlaat apparaat?"],rows:[
+        ["DNS-querydomeinen (geblokkeerd & toegestaan)","Lokale regelkoppeling, privacyrapport","Privéopslag apparaat","Nee"],
+        ["Blokkeringsstatistieken (aantallen, categorieën, bron-app)","Privacyrapport tonen","Privéopslag apparaat","Nee"],
+        ["Filterregels (o.a. openbare AdGuard DNS Filter)","Blokkeren","Lokale cache","Regeltekst is openbaar; uw queries worden niet geüpload"],
+        ["Instellingen (gekozen DNS, TTL, altijd-aan VPN…)","Voorkeuren herstellen","Lokaal op apparaat","Nee"],
+        ["Crashlogs (alleen lokaal bestand last_crash.log)","Weergave op apparaat","Lokaal op apparaat","Nee"]
+      ]},
+      {t:"h3",v:"2.2 Gegevens die wij NIET verzamelen"},
+      {t:"list",v:["Namen, e-mails, telefoonnummers","Nauwkeurige of geschatte locatie","Apparaatidentificatoren (IMEI, Android ID, advertentie-ID)","Contacten, sms, oproepgeschiedenis","Microfoon, camera, foto's, bestandsinhoud","Gedragsprofielen tussen apps","Gegevens voor advertentie- of marketingdoeleinden"]}
+    ]},
+    {h2:"3. Gegevensbeveiliging",blocks:[
+      {t:"p",v:"Alle regels, statistieken en instellingen worden opgeslagen in de privésandbox van de app, niet toegankelijk voor andere apps. Wij exploiteren geen servers die uw gegevens ontvangen of opslaan. Lokale gegevens worden in de standaardopslag van het apparaat bewaard. DNS-queries worden alleen doorgestuurd naar de door u gekozen upstream-resolver (Cloudflare / Google / AdGuard); de queryinhoud wordt nooit met de ontwikkelaar gedeeld."}
+    ]},
+    {h2:"4. Gegevensbewaring",blocks:[
+      {t:"p",v:"Omdat wij geen persoonsgegevens naar een server verzenden, is er geen server-side bewaring van persoonsgegevens. Lokale statistieken en logs worden verwijderd bij het wissen van app-gegevens of het verwijderen van de app."}
+    ]},
+    {h2:"5. Netwerkmachtingen",blocks:[
+      {t:"table",head:["Machtiging","Doel"],rows:[
+        ["INTERNET","Geldige DNS-queries doorsturen naar gekozen upstream-DNS"],
+        ["ACCESS_NETWORK_STATE","Netwerkstatus detecteren om VPN op te zetten/te herstellen"],
+        ["QUERY_ALL_PACKAGES","Lokale blokkeringsstatistieken toewijzen per bron-app (alleen lokale app-lijst, niet geüpload)"],
+        ["FOREGROUND_SERVICE / FOREGROUND_SERVICE_SPECIAL_USE","Lokale VPN uitvoeren als voorgrondservice voor speciaal gebruik"],
+        ["POST_NOTIFICATIONS","VPN-statusmelding tonen"],
+        ["RECEIVE_BOOT_COMPLETED","Blokkering na herstart herstellen volgens uw instellingen"]
+      ]}
+    ]},
+    {h2:"6. Diensten van derden",blocks:[
+      {t:"p",v:"Deze app bevat geen analys-, advertentie- of crashrapportage-SDK's van derden. Om openbare filterregels op te halen, downloadt de app regelbestanden via standaard HTTPS van aanbieders (bijv. openbare AdGuard-filterlijsten); alleen de regeltekst wordt overgedragen, nooit uw persoonsgegevens of DNS-queries. De ingebouwde browser gebruikt de systeem-WebView, onderworpen aan het beleid van de browser van uw apparaat."}
+    ]},
+    {h2:"7. Privacy van kinderen",blocks:[
+      {t:"p",v:"De app is niet gericht op kinderen onder de 13 jaar en verzamelt niet bewust persoonsgegevens van enige leeftijdsgroep."}
+    ]},
+    {h2:"8. Uw rechten",blocks:[
+      {t:"p",v:"Omdat wij geen persoonsgegevens verzamelen of uploaden, zijn er geen servergegevens om te verwijderen of exporteren. U kunt alle lokale gegevens op elk moment wissen door de app te verwijderen."}
+    ]},
+    {h2:"9. Wijzigingen",blocks:[
+      {t:"p",v:"Als de gegevensverwerking in de toekomst wijzigt, werken wij de ingangsdatum bij en informeren wij gebruikers."}
+    ]},
+    {h2:"10. Contact",blocks:[
+      {t:"p",v:"Vragen over dit beleid kunnen worden gestuurd via het feedbackkanaal in de app of de Issues van de projectrepository."}
+    ]}
+  ],
+  foot:"Dit beleid is beschikbaar in vereenvoudigd Chinees en Engels. Ad Blocker · Van kracht sinds 2026-08-07"
+},
+
+tr:{
+  title:"Gizlilik Politikası", sub:"Ad Blocker · Cihaz üzerinde VPN / DNS ile reklam ve izleyici engelleyici",
+  pills:["Yürürlük: 2026-08-07","Sorumlu: Ad Blocker Ekibi","Veri minimalizasyonu"],
+  note:"Tüm filtreleme, istatistik ve tanılama cihazınızda yerel olarak işlenir. Bu uygulama hiçbir kişisel veriyi toplamaz, yüklemez veya paylaşmaz. Hesap sistemi, reklam SDK'sı, analitik SDK'sı veya çökme bildirim hizmeti yoktur.",
+  sections:[
+    {h2:"1. Genel Bakış",blocks:[
+      {t:"p",v:"Bu uygulama, cihazınızda çalışan bir reklam engelleyicisidir. Reklamları, izleyicileri ve kötü amaçlı etki alanlarını DNS katmanında engellemek için Android VpnService kullanır. Tüm filtreleme, istatistik ve tanılama cihazınızda yerel olarak işlenir."},
+      {t:"p",v:"Veri minimalizasyonu ilkesini benimsiyoruz: bu uygulama hiçbir kişisel veya cihaz verisini harici bir sunucuya toplamaz, yüklemez veya paylaşmaz."}
+    ]},
+    {h2:"2. İşlediğimiz Veriler",blocks:[
+      {t:"h3",v:"2.1 Yalnızca cihazda yerel olarak işlenen, yüklenmeyen veriler"},
+      {t:"table",head:["Veri türü","Amaç","Depolama","Cihazdan çıkıyor mu?"],rows:[
+        ["DNS sorgu etki alanları (engellenen ve izin verilen)","Yerel kural eşleme, gizlilik raporu","Cihaz özel depolama","Hayır"],
+        ["Engelleme istatistikleri (sayı, kategori, kaynak uygulama)","Gizlilik raporunu göster","Cihaz özel depolama","Hayır"],
+        ["Filtre kuralları (herkese açık AdGuard DNS Filter dahil)","Engelleme","Yerel önbellek","Kural metni herkese açık; sorgularınız yüklenmez"],
+        ["Ayarlar (seçilen DNS, TTL, her zaman açık VPN…)","Tercihleri geri yükle","Cihazda yerel","Hayır"],
+        ["Çökme günlükleri (yalnızca yerel dosya last_crash.log)","Cihazda görüntüleme","Cihazda yerel","Hayır"]
+      ]},
+      {t:"h3",v:"2.2 Toplamadığımız veriler"},
+      {t:"list",v:["Adlar, e-postalar, telefon numaraları","Tam veya yaklaşık konum","Cihaz tanımlayıcıları (IMEI, Android ID, reklam ID)","Kişiler, SMS, arama kayıtları","Mikrofon, kamera, fotoğraflar, dosya içerikleri","Uygulamalar arası davranış profilleri","Reklam veya pazarlama amaçlı herhangi bir veri"]}
+    ]},
+    {h2:"3. Veri Güvenliği",blocks:[
+      {t:"p",v:"Tüm kurallar, istatistikler ve ayarlar, diğer uygulamaların erişemeyeceği uygulama özel korumalı alanında saklanır. Verilerinizi alan veya saklayan hiçbir sunucu işletmiyoruz. Yerel veriler cihazın standart depolamasında tutulur. DNS sorguları yalnızca seçtiğiniz üst düzey çözümleyiciye (Cloudflare / Google / AdGuard) iletilir; sorgu içeriği geliştiriciyle asla paylaşılmaz."}
+    ]},
+    {h2:"4. Veri Saklama",blocks:[
+      {t:"p",v:"Herhangi bir kişisel veriyi bir sunucuya iletmediğimiz için sunucu tarafında kişisel veri saklama yoktur. Yerel istatistikler ve günlükler, uygulama verileri silindiğinde veya uygulama kaldırıldığında kaldırılır."}
+    ]},
+    {h2:"5. Ağ İzinleri",blocks:[
+      {t:"table",head:["İzin","Amaç"],rows:[
+        ["INTERNET","Meşru DNS sorgularını seçtiğiniz üst DNS'e iletmek"],
+        ["ACCESS_NETWORK_STATE","VPN kurmak/geri yüklemek için ağ durumunu algılamak"],
+        ["QUERY_ALL_PACKAGES","Yerel engelleme istatistiklerini kaynak uygulamaya göre atfetmek (yalnızca yerel uygulama listesi okuma, yüklenmez)"],
+        ["FOREGROUND_SERVICE / FOREGROUND_SERVICE_SPECIAL_USE","Yerel VPN'i özel kullanımlı ön plan hizmeti olarak çalıştırmak"],
+        ["POST_NOTIFICATIONS","VPN durum bildirimini göstermek"],
+        ["RECEIVE_BOOT_COMPLETED","Yeniden başlatmadan sonra ayarlarınıza göre engellemeyi geri yüklemek"]
+      ]}
+    ]},
+    {h2:"6. Üçüncü Taraf Hizmetleri",blocks:[
+      {t:"p",v:"Bu uygulamada üçüncü taraf analitik, reklam veya çökme bildirim SDK'sı bulunmaz. Herkese açık filtre kurallarını almak için uygulama, sağlayıcılardan (ör. AdGuard herkese açık filtre listeleri) standart HTTPS üzerinden kural dosyalarını indirir; yalnızca kural metni aktarılır, hiçbir zaman kişisel verileriniz veya DNS sorgularınız aktarılmaz. Yerleşik tarayıcı, cihaz tarayıcınızın politikasına tabi olan sistem WebView'ını kullanır."}
+    ]},
+    {h2:"7. Çocukların Gizliliği",blocks:[
+      {t:"p",v:"Uygulama 13 yaşın altındaki çocuklara yönelik değildir ve hiçbir yaş grubunun kişisel verisini bilerek toplamaz."}
+    ]},
+    {h2:"8. Haklarınız",blocks:[
+      {t:"p",v:"Hiçbir kişisel veri toplamadığımız veya yüklemedğimiz için silinecek veya dışa aktarılacak sunucu verisi yoktur. Uygulamayı kaldırarak tüm yerel verileri istediğiniz zaman silebilirsiniz."}
+    ]},
+    {h2:"9. Değişiklikler",blocks:[
+      {t:"p",v:"Gelecekte veri işleme değişirse, yürürlük tarihini güncelleyip kullanıcıları bilgilendiririz."}
+    ]},
+    {h2:"10. İletişim",blocks:[
+      {t:"p",v:"Bu politikayla ilgili sorular uygulama içi geri bildirim kanalı veya proje deposunun Issues bölümü üzerinden iletilebilir."}
+    ]}
+  ],
+  foot:"Bu politika basitleştirilmiş Çince ve İngilizce olarak sunulmaktadır. Ad Blocker · Yürürlük 2026-08-07"
+},
+
+vi:{
+  title:"Chính sách Bảo mật", sub:"Ad Blocker · Trình chặn quảng cáo và trình theo dõi qua VPN / DNS trên thiết bị",
+  pills:["Có hiệu lực: 2026-08-07","Chịu trách nhiệm: Đội ngũ Ad Blocker","Tối thiểu hóa dữ liệu"],
+  note:"Mọi việc lọc, thống kê và chẩn đoán đều được xử lý cục bộ trên thiết bị của bạn. Ứng dụng này không thu thập, tải lên hay chia sẻ bất kỳ dữ liệu cá nhân nào. Không có hệ thống tài khoản, SDK quảng cáo, SDK phân tích hay dịch vụ báo cáo sự cố.",
+  sections:[
+    {h2:"1. Tổng quan",blocks:[
+      {t:"p",v:"Ứng dụng này là trình chặn quảng cáo chạy trên thiết bị. Nó sử dụng VpnService của Android để chặn quảng cáo, trình theo dõi và tên miền độc hại ở lớp DNS. Mọi việc lọc, thống kê và chẩn đoán đều được xử lý cục bộ trên thiết bị của bạn."},
+      {t:"p",v:"Chúng tôi tuân thủ nguyên tắc tối thiểu hóa dữ liệu: ứng dụng này không thu thập, tải lên hay chia sẻ bất kỳ dữ liệu cá nhân hoặc thiết bị nào với máy chủ bên ngoài."}
+    ]},
+    {h2:"2. Dữ liệu chúng tôi xử lý",blocks:[
+      {t:"h3",v:"2.1 Dữ liệu chỉ xử lý cục bộ trên thiết bị (không bao giờ tải lên)"},
+      {t:"table",head:["Loại dữ liệu","Mục đích","Vị trí lưu","Rời khỏi thiết bị?"],rows:[
+        ["Tên miền truy vấn DNS (bị chặn & cho phép)","Đối chiếu quy tắc cục bộ, báo cáo riêng tư","Lưu riêng tư thiết bị","Không"],
+        ["Thống kê chặn (số lần, phân loại, ứng dụng nguồn)","Hiển thị báo cáo riêng tư","Lưu riêng tư thiết bị","Không"],
+        ["Quy tắc lọc (gồm AdGuard DNS Filter công khai)","Chặn","Bộ nhớ đệm cục bộ","Văn bản quy tắc là công khai; truy vấn của bạn không được tải lên"],
+        ["Cài đặt (DNS đã chọn, TTL, luôn bật VPN…)","Khôi phục tùy chọn","Cục bộ trên thiết bị","Không"],
+        ["Nhật ký sự cố (chỉ tệp cục bộ last_crash.log)","Xem trên thiết bị","Cục bộ trên thiết bị","Không"]
+      ]},
+      {t:"h3",v:"2.2 Dữ liệu chúng tôi KHÔNG thu thập"},
+      {t:"list",v:["Họ tên, email, số điện thoại","Vị trí chính xác hoặc xấp xỉ","Định danh thiết bị (IMEI, Android ID, ID quảng cáo)","Danh bạ, SMS, nhật ký cuộc gọi","Mic, camera, ảnh, nội dung tệp","Hồ sơ hành vi giữa các ứng dụng","Bất kỳ dữ liệu nào cho mục đích quảng cáo hay tiếp thị"]}
+    ]},
+    {h2:"3. Bảo mật dữ liệu",blocks:[
+      {t:"p",v:"Mọi quy tắc, thống kê và cài đặt đều được lưu trong vùng cát riêng của ứng dụng, không thể truy cập bởi ứng dụng khác. Chúng tôi không vận hành máy chủ nào nhận hoặc lưu dữ liệu của bạn. Dữ liệu cục bộ được giữ trong bộ nhớ tiêu chuẩn của thiết bị. Truy vấn DNS chỉ được chuyển tiếp đến bộ phân giải upstream bạn chọn (Cloudflare / Google / AdGuard); nội dung truy vấn không bao giờ được chia sẻ với nhà phát triển."}
+    ]},
+    {h2:"4. Lưu giữ dữ liệu",blocks:[
+      {t:"p",v:"Vì chúng tôi không truyền bất kỳ dữ liệu cá nhân nào đến máy chủ, nên không có việc lưu giữ dữ liệu cá nhân trên máy chủ. Thống kê và nhật ký cục bộ sẽ bị xóa khi bạn xóa dữ liệu ứng dụng hoặc gỡ cài đặt."}
+    ]},
+    {h2:"5. Quyền mạng",blocks:[
+      {t:"table",head:["Quyền","Mục đích"],rows:[
+        ["INTERNET","Chuyển tiếp truy vấn DNS hợp lệ đến DNS upstream bạn chọn"],
+        ["ACCESS_NETWORK_STATE","Phát hiện trạng thái mạng để thiết lập/khôi phục VPN"],
+        ["QUERY_ALL_PACKAGES","Gán thống kê chặn cục bộ theo ứng dụng nguồn (chỉ đọc danh sách ứng dụng cục bộ, không tải lên)"],
+        ["FOREGROUND_SERVICE / FOREGROUND_SERVICE_SPECIAL_USE","Chạy VPN cục bộ như dịch vụ nền dùng đặc biệt"],
+        ["POST_NOTIFICATIONS","Hiển thị thông báo trạng thái VPN"],
+        ["RECEIVE_BOOT_COMPLETED","Khôi phục chặn sau khởi động lại theo cài đặt của bạn"]
+      ]}
+    ]},
+    {h2:"6. Dịch vụ bên thứ ba",blocks:[
+      {t:"p",v:"Ứng dụng này không chứa SDK phân tích, quảng cáo hay báo cáo sự cố của bên thứ ba. Để lấy quy tắc lọc công khai, ứng dụng tải tệp quy tắc qua HTTPS tiêu chuẩn từ nhà cung cấp (ví dụ danh sách lọc công khai AdGuard); chỉ văn bản quy tắc được truyền, không bao giờ là dữ liệu cá nhân hay truy vấn DNS của bạn. Trình duyệt tích hợp dùng WebView hệ thống, tuân theo chính sách trình duyệt của thiết bị."}
+    ]},
+    {h2:"7. Quyền riêng tư trẻ em",blocks:[
+      {t:"p",v:"Ứng dụng không dành cho trẻ em dưới 13 tuổi và không cố ý thu thập dữ liệu cá nhân của bất kỳ nhóm tuổi nào."}
+    ]},
+    {h2:"8. Quyền của bạn",blocks:[
+      {t:"p",v:"Vì chúng tôi không thu thập hay tải lên dữ liệu cá nhân, nên không có dữ liệu máy chủ để xóa hay xuất. Bạn có thể xóa mọi dữ liệu cục bộ bất cứ lúc nào bằng cách gỡ cài đặt ứng dụng."}
+    ]},
+    {h2:"9. Thay đổi",blocks:[
+      {t:"p",v:"Nếu việc xử lý dữ liệu thay đổi trong tương lai, chúng tôi sẽ cập nhật ngày có hiệu lực và thông báo cho người dùng."}
+    ]},
+    {h2:"10. Liên hệ",blocks:[
+      {t:"p",v:"Câu hỏi về chính sách này có thể gửi qua kênh phản hồi trong ứng dụng hoặc Issues của kho lưu trữ dự án."}
+    ]}
+  ],
+  foot:"Chính sách này được cung cấp bằng tiếng Trung giản thể và tiếng Anh. Ad Blocker · Có hiệu lực từ 2026-08-07"
+}
+
+};
+
+function render(lang){
+  const d = D[lang] || D.en;
+  document.documentElement.lang = lang;
+  document.body.classList.toggle('rtl', RTL.has(lang));
+  document.getElementById('t-title').textContent = d.title;
+  document.getElementById('t-sub').textContent = d.sub;
+  const pills=[d.pills[0],d.pills[1],d.pills[2]];
+  document.getElementById('t-pill1').textContent = pills[0]||'';
+  document.getElementById('t-pill2').textContent = pills[1]||'';
+  document.getElementById('t-pill3').textContent = pills[2]||'';
+  let html='';
+  let toc='';
+  const n = d.sections.length;
+  d.sections.forEach((s, i)=>{
+    const sid = 'sec-'+i;
+    const label = s.h2.replace(/^[\d一二三四五六七八九十]+[.、\s]*/, '').trim();
+    toc += '<a href="#'+sid+'" data-sid="'+sid+'">'+esc(s.h2)+'</a>';
+    html += '<section id="'+sid+'"><h2><span class="idx">'+(i+1)+'</span>'+esc(s.h2)+'</h2>';
+    for(const b of s.blocks){
+      if(b.t==='p') html += '<p>'+esc(b.v)+'</p>';
+      else if(b.t==='h3') html += '<h3>'+esc(b.v)+'</h3>';
+      else if(b.t==='list'){ html += '<ul>'; for(const li of b.v) html += '<li>'+esc(li)+'</li>'; html += '</ul>'; }
+      else if(b.t==='table'){
+        html += '<table><thead><tr>';
+        for(const h of b.head) html += '<th>'+esc(h)+'</th>';
+        html += '</tr></thead><tbody>';
+        for(const row of b.rows){ html += '<tr>'; for(const c of row) html += '<td>'+esc(c)+'</td>'; html += '</tr>'; }
+        html += '</tbody></table>';
+      }
+    }
+    html += '</section>';
+  });
+  document.getElementById('content').innerHTML = '<div class="note"><span class="ic">✓</span><div>'+esc(d.note)+'</div></div>'+html;
+  document.getElementById('t-foot').textContent = d.foot;
+  document.getElementById('t-toc').textContent = TOC[lang] || 'Contents';
+  document.getElementById('toc-nav').innerHTML = toc;
+  bindToc();
+  try{ localStorage.setItem('pp_lang', lang); }catch(e){}
+}
+
+// 目录高亮 + 平滑滚动
+let tocObserver=null;
+function bindToc(){
+  const links = Array.from(document.querySelectorAll('#toc-nav a'));
+  links.forEach(a=>{
+    a.addEventListener('click', e=>{
+      e.preventDefault();
+      const el=document.getElementById(a.getAttribute('data-sid'));
+      if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+    });
+  });
+  if(tocObserver) tocObserver.disconnect();
+  tocObserver = new IntersectionObserver(entries=>{
+    entries.forEach(en=>{
+      if(en.isIntersecting){
+        const id=en.target.id;
+        links.forEach(a=>a.classList.toggle('active', a.getAttribute('data-sid')===id));
+      }
+    });
+  },{rootMargin:'-20% 0px -70% 0px',threshold:0});
+  document.querySelectorAll('#content section').forEach(s=>tocObserver.observe(s));
+}
+
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+// 初始化语言选择器
+(function(){
+  const sel = document.getElementById('langSel');
+  for(const [code,name] of LANGS){
+    const o=document.createElement('option'); o.value=code; o.textContent=name; sel.appendChild(o);
   }
-  (function(){
-    var saved='zh';
-    try{ saved=localStorage.getItem('pp_lang')||'zh'; }catch(e){}
-    if(saved==='en') switchLang('en');
-  })();
+  let saved='zh';
+  try{ saved=localStorage.getItem('pp_lang')||'zh'; }catch(e){}
+  if(!D[saved]) saved='zh';
+  sel.value=saved;
+  render(saved);
+})();
 </script>
 </body>
 </html>

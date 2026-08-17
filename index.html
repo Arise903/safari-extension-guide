@@ -3,69 +3,229 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#0b1220">
+  <meta name="theme-color" content="#f7f4f2">
   <meta name="description" content="Learn how to enable Ad Blocker Safari extensions and start Safari protection.">
   <title>启用 Safari 扩展 · 广告拦截器</title>
   <style>
     :root {
+      color-scheme: light;
+      --bg: #f7f4f2;
+      --card: #ffffff;
+      --text: #1f1f24;
+      --muted: #7f7f88;
+      --blue: #ff4a46;
+      --blue-soft: #fff1f0;
+      --line: #e7e2df;
+      --shadow: 0 16px 38px rgba(35, 24, 21, .08);
+      --nav-chip-text: #6f6f78;
+      --nav-chip-bg: #f2efee;
+      --nav-chip-border: #f2efee;
+      --nav-chip-active-border: #ffb6b0;
+      --focus-ring: rgba(255, 74, 70, .24);
+      --hero-glow: rgba(255, 74, 70, .20);
+      --version-border: #ffd0cb;
+      --version-text: #c95b52;
+      --version-bg: #fff1f0;
+      --notice-bg: #f5f3f3;
+      --notice-icon-border: #d7d2cf;
+      --notice-icon-bg: #fff;
+      --notice-icon-text: #8a8684;
+      --step-visual-shadow: 0 10px 24px rgba(35, 24, 21, .08);
+      --path-bg: #fff1f0;
+      --path-text: #c95b52;
+      --path-border: #ffd0cb;
+      --done-border: #ffc98f;
+      --done-bg: #fff3e8;
+      --done-text: #9c6633;
+      --footer-text: #9a9491;
+      --meta-text: #b0aaa6;
+      --theme-chip-bg: #f2efee;
+      --theme-chip-border: #e7e2df;
+      --theme-chip-text: #6f6f78;
+      --theme-chip-active-bg: #fff1f0;
+      --theme-chip-active-border: #ffb6b0;
+      --theme-chip-active-text: #ff4a46;
+    }
+    :root[data-theme="dark"] {
       color-scheme: dark;
       --bg: #0b1220;
       --card: #172033;
       --text: #f8fafc;
       --muted: #b5c0d4;
-      --blue: #2f80ed;
+      --blue: #4ea1ff;
       --blue-soft: #173a70;
       --line: #2b3850;
       --shadow: 0 16px 38px rgba(0, 0, 0, .28);
+      --nav-chip-text: #c0cada;
+      --nav-chip-bg: #202b3e;
+      --nav-chip-border: #344158;
+      --nav-chip-active-border: #2f80ed;
+      --focus-ring: #70b7ff;
+      --hero-glow: rgba(35, 119, 237, .28);
+      --version-border: #31527e;
+      --version-text: #b9d7ff;
+      --version-bg: #152b4b;
+      --notice-bg: var(--card);
+      --notice-icon-border: transparent;
+      --notice-icon-bg: var(--blue-soft);
+      --notice-icon-text: var(--blue);
+      --step-visual-shadow: 0 10px 24px rgba(0,0,0,.2);
+      --path-bg: #243149;
+      --path-text: #dbe5f5;
+      --path-border: transparent;
+      --done-border: #146b4a;
+      --done-bg: #0d3b2b;
+      --done-text: #a7f3d0;
+      --footer-text: #8996ab;
+      --meta-text: #718096;
+      --theme-chip-bg: #202b3e;
+      --theme-chip-border: #344158;
+      --theme-chip-text: #c0cada;
+      --theme-chip-active-bg: #173a70;
+      --theme-chip-active-border: #2f80ed;
+      --theme-chip-active-text: #ffffff;
     }
     * { box-sizing: border-box; }
     body {
       margin: 0;
       min-height: 100vh;
       padding: max(24px, env(safe-area-inset-top)) 18px max(28px, env(safe-area-inset-bottom));
-      background: radial-gradient(circle at 50% -18%, #1c2d49 0, var(--bg) 46%, #070c15 100%);
+      background: linear-gradient(180deg, color-mix(in srgb, var(--bg) 84%, white 16%) 0%, var(--bg) 100%);
       color: var(--text);
       font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "PingFang SC", "Helvetica Neue", sans-serif;
       -webkit-font-smoothing: antialiased;
     }
     main { max-width: 560px; margin: 0 auto; }
     .topbar { display: flex; align-items: center; justify-content: flex-end; gap: 12px; margin: 0 0 12px; }
-    .lang-select { border: 1px solid var(--line); border-radius: 999px; background: var(--card); color: var(--muted); font: inherit; font-size: 12px; padding: 8px 12px; text-decoration: none; }
-    .lang-select { appearance: none; -webkit-appearance: none; padding-right: 28px; background-image: linear-gradient(45deg, transparent 50%, var(--muted) 50%), linear-gradient(135deg, var(--muted) 50%, transparent 50%); background-position: calc(100% - 13px) 11px, calc(100% - 9px) 11px; background-size: 4px 4px, 4px 4px; background-repeat: no-repeat; }
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px;
+      border: 1px solid var(--theme-chip-border);
+      border-radius: 999px;
+      background: var(--card);
+    }
+    .theme-toggle button {
+      border: 1px solid transparent;
+      border-radius: 999px;
+      background: var(--theme-chip-bg);
+      color: var(--theme-chip-text);
+      font: inherit;
+      font-size: 12px;
+      line-height: 1;
+      padding: 8px 12px;
+      cursor: pointer;
+    }
+    .theme-toggle button.active {
+      background: var(--theme-chip-active-bg);
+      border-color: var(--theme-chip-active-border);
+      color: var(--theme-chip-active-text);
+      font-weight: 650;
+    }
+    .lang-select {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--card);
+      color: var(--muted);
+      font: inherit;
+      font-size: 12px;
+      padding: 8px 12px;
+      text-decoration: none;
+    }
+    .lang-select {
+      appearance: none;
+      -webkit-appearance: none;
+      padding-right: 28px;
+      background-image: linear-gradient(45deg, transparent 50%, var(--muted) 50%), linear-gradient(135deg, var(--muted) 50%, transparent 50%);
+      background-position: calc(100% - 13px) 11px, calc(100% - 9px) 11px;
+      background-size: 4px 4px, 4px 4px;
+      background-repeat: no-repeat;
+    }
     .page-nav { display: flex; gap: 8px; overflow-x: auto; padding: 2px 2px 12px; scrollbar-width: none; }
     .page-nav::-webkit-scrollbar { display: none; }
-    .page-nav a { flex: 0 0 auto; padding: 8px 12px; border-radius: 999px; color: #c0cada; background: #202b3e; border: 1px solid #344158; font-size: 12px; text-decoration: none; }
-    .page-nav a.active { color: #ffffff; background: var(--blue); border-color: var(--blue); font-weight: 650; box-shadow: 0 5px 12px rgba(20, 110, 245, .2); }
-    a:focus-visible, select:focus-visible, summary:focus-visible { outline: 3px solid #70b7ff; outline-offset: 3px; }
+    .page-nav a {
+      flex: 0 0 auto;
+      padding: 8px 12px;
+      border-radius: 999px;
+      color: var(--nav-chip-text);
+      background: var(--nav-chip-bg);
+      border: 1px solid var(--nav-chip-border);
+      font-size: 12px;
+      text-decoration: none;
+    }
+    .page-nav a.active {
+      color: var(--blue);
+      background: var(--blue-soft);
+      border-color: var(--nav-chip-active-border);
+      font-weight: 650;
+    }
+    a:focus-visible, select:focus-visible, summary:focus-visible, button:focus-visible { outline: 3px solid var(--focus-ring); outline-offset: 3px; }
     .hero { text-align: center; padding: 18px 8px 22px; }
     .logo {
       width: 72px; height: 72px; margin: 0 auto 18px; border-radius: 23px;
       display: grid; place-items: center; color: #fff; font-size: 34px;
-      background: linear-gradient(145deg, #54a8ff, #176ce7);
-      box-shadow: 0 12px 26px rgba(35, 119, 237, .28);
+      background: linear-gradient(145deg, #ff6d68, #ff3b36);
+      box-shadow: 0 12px 26px var(--hero-glow);
     }
     h1 { margin: 0; font-size: 28px; letter-spacing: -.5px; }
     .subtitle { margin: 10px auto 0; color: var(--muted); font-size: 16px; line-height: 1.55; }
-    .version-note { display: inline-block; margin-top: 12px; padding: 7px 11px; border: 1px solid #31527e; border-radius: 999px; color: #b9d7ff; background: #152b4b; font-size: 12px; line-height: 1.35; }
+    .version-note {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 7px 11px;
+      border: 1px solid var(--version-border);
+      border-radius: 999px;
+      color: var(--version-text);
+      background: var(--version-bg);
+      font-size: 12px;
+      line-height: 1.35;
+    }
     .notice, .step, .fallback {
       border: 1px solid var(--line); border-radius: 24px; background: var(--card);
-      box-shadow: var(--shadow); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+      box-shadow: var(--shadow);
     }
-    .notice { padding: 17px 18px; margin-bottom: 16px; display: flex; gap: 12px; align-items: flex-start; }
-    .notice-icon { width: 28px; height: 28px; flex: 0 0 28px; display: grid; place-items: center; border-radius: 50%; background: var(--blue-soft); color: var(--blue); font-weight: 700; }
+    .notice {
+      padding: 17px 18px; margin-bottom: 16px; display: flex; gap: 12px; align-items: flex-start;
+      background: var(--notice-bg);
+    }
+    .notice-icon {
+      width: 28px; height: 28px; flex: 0 0 28px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      border: 1px solid var(--notice-icon-border);
+      background: var(--notice-icon-bg);
+      color: var(--notice-icon-text);
+      font-weight: 700;
+    }
     .notice strong { display: block; margin-bottom: 4px; font-size: 15px; }
     .notice span { color: var(--muted); font-size: 14px; line-height: 1.5; }
     .steps { display: grid; gap: 12px; }
-    .step { padding: 19px; display: grid; grid-template-columns: 42px 1fr; gap: 14px; align-items: start; }
-    .number { width: 42px; height: 42px; border-radius: 14px; display: grid; place-items: center; background: var(--blue-soft); color: var(--blue); font-size: 18px; font-weight: 750; }
+    .step {
+      padding: 19px; display: grid; grid-template-columns: 42px 1fr; gap: 14px; align-items: start;
+    }
+    .number {
+      width: 42px; height: 42px; border-radius: 14px; display: grid; place-items: center;
+      background: var(--blue-soft); color: var(--blue); font-size: 18px; font-weight: 750;
+    }
     .step h2 { margin: 1px 0 7px; font-size: 17px; }
     .step p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.6; }
-    .step-visual { display: block; width: min(100%, 250px); margin: 16px auto 0; border: 1px solid var(--line); border-radius: 18px; box-shadow: 0 10px 24px rgba(0,0,0,.2); }
-    .path { display: inline-flex; margin-top: 10px; padding: 7px 10px; border-radius: 9px; background: #243149; color: #dbe5f5; font-size: 13px; }
+    .step-visual {
+      display: block; width: min(100%, 250px); margin: 16px auto 0;
+      border: 1px solid var(--line); border-radius: 18px; box-shadow: var(--step-visual-shadow);
+    }
+    .path {
+      display: inline-flex; margin-top: 10px; padding: 7px 10px; border-radius: 9px;
+      background: var(--path-bg); color: var(--path-text); font-size: 13px; border: 1px solid var(--path-border);
+    }
     .fallback { margin-top: 16px; padding: 18px; }
     .fallback h2 { margin: 0 0 8px; font-size: 16px; }
     .fallback p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.55; }
-    .done { margin-top: 18px; padding: 17px 18px; border: 1px solid #146b4a; border-radius: 20px; background: #0d3b2b; color: #a7f3d0; font-size: 14px; line-height: 1.55; }
+    .done {
+      margin-top: 18px; padding: 17px 18px; border: 1px solid var(--done-border); border-radius: 20px;
+      background: var(--done-bg); color: var(--done-text); font-size: 14px; line-height: 1.55;
+    }
     .after-setup, .faq { margin-top: 16px; padding: 18px; border: 1px solid var(--line); border-radius: 22px; background: var(--card); box-shadow: var(--shadow); }
     .after-setup h2, .faq h2 { margin: 0 0 10px; font-size: 16px; }
     .after-setup ol { margin: 0; padding-left: 22px; color: var(--muted); font-size: 14px; line-height: 1.75; }
@@ -73,8 +233,8 @@
     .faq details:first-of-type { border-top: 0; padding-top: 0; }
     .faq summary { cursor: pointer; color: var(--text); font-size: 14px; font-weight: 650; }
     .faq details p { margin: 7px 0 0; color: var(--muted); font-size: 14px; line-height: 1.55; }
-    .guide-meta { margin-top: 12px; color: #718096; font-size: 11px; }
-    footer { padding: 22px 8px 0; text-align: center; color: #8996ab; font-size: 12px; }
+    .guide-meta { margin-top: 12px; color: var(--meta-text); font-size: 11px; }
+    footer { padding: 22px 8px 0; text-align: center; color: var(--footer-text); font-size: 12px; }
     .footer-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
     .footer-links a { color: inherit; }
     @media (max-width: 380px) {
@@ -84,19 +244,15 @@
       h1 { font-size: 25px; }
       .lang-select { padding-left: 9px; padding-right: 9px; }
     }
-    @media (prefers-color-scheme: dark) {
-      :root { color-scheme: dark; --bg: #0b1220; --card: #172033; --text: #f8fafc; --muted: #b5c0d4; --blue-soft: #173a70; --line: #2b3850; --shadow: 0 16px 38px rgba(0,0,0,.28); }
-      body { background: radial-gradient(circle at 50% -18%, #1c2d49 0, var(--bg) 46%, #070c15 100%); }
-      .page-nav a { color: #c0cada; background: #202b3e; border-color: #344158; }
-      .page-nav a.active { color: #ffffff; background: #2f80ed; border-color: #2f80ed; }
-      .path { background: #243149; color: #dbe5f5; }
-      .done { border-color: #146b4a; background: #0d3b2b; color: #a7f3d0; }
-    }
   </style>
 </head>
 <body>
   <main>
     <div class="topbar">
+      <div class="theme-toggle" role="group" aria-label="Theme">
+        <button type="button" id="theme-light" data-theme-option="light">Light</button>
+        <button type="button" id="theme-dark" data-theme-option="dark">Dark</button>
+      </div>
       <select class="lang-select" id="language-select" aria-label="Language">
         <option value="zh">中文</option>
         <option value="en">English</option>
@@ -159,6 +315,7 @@
     (() => {
       const params = new URLSearchParams(location.search);
       const guideUpdatedAt = '2026-08';
+      const themeParam = params.get('theme');
       const requestedLanguage = params.get('lang') || params.get('language');
       const supportedLanguages = ['zh', 'en', 'ja', 'ko', 'es', 'fr', 'de', 'pt-BR', 'it', 'ru', 'ar', 'hi', 'nl', 'tr', 'vi'];
       // 上架引导页默认使用英文，避免系统语言与 App 语言不一致时出现意外切换。
@@ -169,6 +326,33 @@
       const requestedPage = params.get('page') || 'ios';
       const pageKey = ['ios', 'ios17', 'ios18', 'content-blocker', 'web-extension'].includes(requestedPage)
         ? requestedPage : 'ios';
+      const storedTheme = (() => {
+        try { return localStorage.getItem('guide-theme'); } catch (_) { return null; }
+      })();
+      const preferredTheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        ? 'dark'
+        : 'light';
+      const theme = ['light', 'dark'].includes(themeParam)
+        ? themeParam
+        : (['light', 'dark'].includes(storedTheme) ? storedTheme : preferredTheme);
+      const themeMeta = document.querySelector('meta[name="theme-color"]');
+      const root = document.documentElement;
+      const applyTheme = (nextTheme) => {
+        root.dataset.theme = nextTheme;
+        if (themeMeta) {
+          themeMeta.setAttribute('content', nextTheme === 'dark' ? '#0b1220' : '#f7f4f2');
+        }
+        try { localStorage.setItem('guide-theme', nextTheme); } catch (_) {}
+        document.querySelectorAll('[data-theme-option]').forEach((button) => {
+          const active = button.dataset.themeOption === nextTheme;
+          button.classList.toggle('active', active);
+          button.setAttribute('aria-pressed', active ? 'true' : 'false');
+        });
+        document.querySelectorAll('img[data-dark-src][data-light-src]').forEach((image) => {
+          image.src = nextTheme === 'dark' ? image.dataset.darkSrc : image.dataset.lightSrc;
+        });
+      };
+      root.dataset.theme = theme;
 
       const copy = {
         zh: {
@@ -178,6 +362,8 @@
           fallbackTitle: '找不到“管理扩展”？',
           fallbackBody: '请打开“设置 → Safari → 扩展”，找到本应用并开启。不同 iOS 版本的菜单名称可能略有不同。',
           footer: '广告拦截器 · Safari 防护引导',
+          themeLight: '白天',
+          themeDark: '黑夜',
           pages: { ios: '通用引导', ios17: 'iOS 17', ios18: 'iOS 18+', 'content-blocker': '基础拦截', 'web-extension': '网页增强' }
         },
         en: {
@@ -187,6 +373,8 @@
           fallbackTitle: 'Can’t find “Manage Extensions”?',
           fallbackBody: 'Open Settings → Safari → Extensions, find this app, and turn it on. Menu names may vary by iOS version.',
           footer: 'Ad Blocker · Safari protection guide',
+          themeLight: 'Light',
+          themeDark: 'Dark',
           pages: { ios: 'General guide', ios17: 'iOS 17', ios18: 'iOS 18+', 'content-blocker': 'Basic blocking', 'web-extension': 'Web enhancement' }
         },
         ja: {
@@ -196,78 +384,80 @@
           fallbackTitle: '「拡張機能を管理」が見つかりませんか？',
           fallbackBody: '設定 → Safari → 拡張機能を開き、このアプリを有効にしてください。名称はiOSのバージョンによって異なる場合があります。',
           footer: '広告ブロッカー · Safari保護ガイド',
+          themeLight: 'ライト',
+          themeDark: 'ダーク',
           pages: { ios: '基本ガイド', ios17: 'iOS 17', ios18: 'iOS 18以降', 'content-blocker': '基本ブロック', 'web-extension': 'Web拡張' }
         },
         ko: {
           back: '앱으로 돌아가기', home: '가이드 홈', support: '지원',
           noticeTitle: 'Safari에서 설정을 완료하세요', noticeBody: 'iOS에서는 다른 앱이 확장 프로그램을 대신 켤 수 없습니다. 완료 후 광고 차단기로 돌아가 “다시 확인”을 탭하세요.',
-          fallbackTitle: '“확장 프로그램 관리”가 보이지 않나요?', fallbackBody: '설정 → Safari → 확장 프로그램에서 이 앱을 찾아 켜세요. iOS 버전에 따라 메뉴 이름이 다를 수 있습니다.', footer: '광고 차단기 · Safari 보호 가이드',
+          fallbackTitle: '“확장 프로그램 관리”가 보이지 않나요?', fallbackBody: '설정 → Safari → 확장 프로그램에서 이 앱을 찾아 켜세요. iOS 버전에 따라 메뉴 이름이 다를 수 있습니다.', footer: '광고 차단기 · Safari 보호 가이드', themeLight: '라이트', themeDark: '다크',
           pages: { ios: '기본 안내', ios17: 'iOS 17', ios18: 'iOS 18+', 'content-blocker': '기본 차단', 'web-extension': '웹 확장' }
         },
         es: {
           back: 'Volver a la app', home: 'Inicio', support: 'Soporte',
           noticeTitle: 'Completa la configuración en Safari', noticeBody: 'iOS no permite que otra app active las extensiones por ti. Cuando termines, vuelve a Bloqueador y toca “Comprobar de nuevo”.',
-          fallbackTitle: '¿No encuentras “Gestionar extensiones”?', fallbackBody: 'Abre Ajustes → Safari → Extensiones, busca esta app y actívala. El nombre puede variar según la versión de iOS.', footer: 'Bloqueador · Guía de protección de Safari',
+          fallbackTitle: '¿No encuentras “Gestionar extensiones”?', fallbackBody: 'Abre Ajustes → Safari → Extensiones, busca esta app y actívala. El nombre puede variar según la versión de iOS.', footer: 'Bloqueador · Guía de protección de Safari', themeLight: 'Claro', themeDark: 'Oscuro',
           pages: { ios: 'Guía general', ios17: 'iOS 17', ios18: 'iOS 18+', 'content-blocker': 'Bloqueo básico', 'web-extension': 'Mejoras web' }
         },
         fr: {
           back: 'Retour à l’app', home: 'Accueil', support: 'Assistance',
           noticeTitle: 'Terminez la configuration dans Safari', noticeBody: 'iOS ne permet pas à une autre app d’activer les extensions à votre place. Revenez ensuite dans le bloqueur et touchez « Vérifier à nouveau ».',
-          fallbackTitle: '« Gérer les extensions » est introuvable ?', fallbackBody: 'Ouvrez Réglages → Safari → Extensions, trouvez cette app et activez-la. Le nom peut varier selon la version d’iOS.', footer: 'Bloqueur · Guide de protection Safari',
+          fallbackTitle: '« Gérer les extensions » est introuvable ?', fallbackBody: 'Ouvrez Réglages → Safari → Extensions, trouvez cette app et activez-la. Le nom peut varier selon la version d’iOS.', footer: 'Bloqueur · Guide de protection Safari', themeLight: 'Clair', themeDark: 'Sombre',
           pages: { ios: 'Guide général', ios17: 'iOS 17', ios18: 'iOS 18+', 'content-blocker': 'Blocage de base', 'web-extension': 'Extension web' }
         },
         de: {
           back: 'Zurück zur App', home: 'Startseite', support: 'Support',
           noticeTitle: 'Einrichtung in Safari abschließen', noticeBody: 'iOS kann Erweiterungen nicht durch eine andere App aktivieren. Kehren Sie danach zum Werbeblocker zurück und tippen Sie auf „Erneut prüfen“.',
-          fallbackTitle: '„Erweiterungen verwalten“ nicht gefunden?', fallbackBody: 'Öffnen Sie Einstellungen → Safari → Erweiterungen, suchen Sie diese App und aktivieren Sie sie. Die Bezeichnung kann je nach iOS-Version abweichen.', footer: 'Werbeblocker · Safari-Schutzanleitung',
+          fallbackTitle: '„Erweiterungen verwalten“ nicht gefunden?', fallbackBody: 'Öffnen Sie Einstellungen → Safari → Erweiterungen, suchen Sie diese App und aktivieren Sie sie. Die Bezeichnung kann je nach iOS-Version abweichen.', footer: 'Werbeblocker · Safari-Schutzanleitung', themeLight: 'Hell', themeDark: 'Dunkel',
           pages: { ios: 'Allgemeine Anleitung', ios17: 'iOS 17', ios18: 'iOS 18+', 'content-blocker': 'Basisschutz', 'web-extension': 'Web-Erweiterung' }
         },
         'pt-BR': {
           back: 'Voltar ao app', home: 'Início', support: 'Suporte',
           noticeTitle: 'Conclua a configuração no Safari', noticeBody: 'O iOS não permite que outro app ative extensões por você. Depois, volte ao bloqueador e toque em “Verificar novamente”.',
-          fallbackTitle: 'Não encontrou “Gerenciar extensões”?', fallbackBody: 'Abra Ajustes → Safari → Extensões, encontre este app e ative-o. Os nomes podem variar conforme a versão do iOS.', footer: 'Bloqueador · Guia de proteção do Safari',
+          fallbackTitle: 'Não encontrou “Gerenciar extensões”?', fallbackBody: 'Abra Ajustes → Safari → Extensões, encontre este app e ative-o. Os nomes podem variar conforme a versão do iOS.', footer: 'Bloqueador · Guia de proteção do Safari', themeLight: 'Claro', themeDark: 'Escuro',
           pages: { ios: 'Guia geral', ios17: 'iOS 17', ios18: 'iOS 18+', 'content-blocker': 'Bloqueio básico', 'web-extension': 'Extensão web' }
         },
         it: {
           back: 'Torna all’app', home: 'Home', support: 'Supporto',
           noticeTitle: 'Completa la configurazione in Safari', noticeBody: 'iOS non consente a un’altra app di attivare le estensioni al posto tuo. Poi torna al blocco pubblicità e tocca “Controlla di nuovo”.',
-          fallbackTitle: 'Non trovi “Gestisci estensioni”?', fallbackBody: 'Apri Impostazioni → Safari → Estensioni, trova questa app e attivala. Il nome può variare in base alla versione di iOS.', footer: 'Blocco pubblicità · Guida alla protezione Safari',
+          fallbackTitle: 'Non trovi “Gestisci estensioni”?', fallbackBody: 'Apri Impostazioni → Safari → Estensioni, trova questa app e attivala. Il nome può variare in base alla versione di iOS.', footer: 'Blocco pubblicità · Guida alla protezione Safari', themeLight: 'Chiaro', themeDark: 'Scuro',
           pages: { ios: 'Guida generale', ios17: 'iOS 17', ios18: 'iOS 18+', 'content-blocker': 'Blocco base', 'web-extension': 'Estensione web' }
         },
         ru: {
           back: 'Вернуться в приложение', home: 'Главная', support: 'Поддержка',
           noticeTitle: 'Завершите настройку в Safari', noticeBody: 'iOS не позволяет другому приложению включить расширения за вас. После этого вернитесь в блокировщик и нажмите «Проверить снова».',
-          fallbackTitle: 'Не нашли «Управление расширениями»?', fallbackBody: 'Откройте Настройки → Safari → Расширения, найдите это приложение и включите его. Названия могут отличаться в разных версиях iOS.', footer: 'Блокировщик · Руководство по защите Safari',
+          fallbackTitle: 'Не нашли «Управление расширениями»?', fallbackBody: 'Откройте Настройки → Safari → Расширения, найдите это приложение и включите его. Названия могут отличаться в разных версиях iOS.', footer: 'Блокировщик · Руководство по защите Safari', themeLight: 'Светлая', themeDark: 'Тёмная',
           pages: { ios: 'Общее руководство', ios17: 'iOS 17', ios18: 'iOS 18+', 'content-blocker': 'Базовая блокировка', 'web-extension': 'Веб-расширение' }
         },
         ar: {
           back: 'العودة إلى التطبيق', home: 'الصفحة الرئيسية', support: 'الدعم',
           noticeTitle: 'أكمل الإعداد في Safari', noticeBody: 'لا يسمح iOS لتطبيق آخر بتفعيل الإضافات نيابةً عنك. بعد الانتهاء، عد إلى مانع الإعلانات واضغط «تحقق مرة أخرى».',
-          fallbackTitle: 'لا تجد «إدارة الإضافات»؟', fallbackBody: 'افتح الإعدادات ← Safari ← الإضافات، وابحث عن هذا التطبيق وفعّله. قد تختلف أسماء القوائم حسب إصدار iOS.', footer: 'مانع الإعلانات · دليل حماية Safari',
+          fallbackTitle: 'لا تجد «إدارة الإضافات»؟', fallbackBody: 'افتح الإعدادات ← Safari ← الإضافات، وابحث عن هذا التطبيق وفعّله. قد تختلف أسماء القوائم حسب إصدار iOS.', footer: 'مانع الإعلانات · دليل حماية Safari', themeLight: 'نهاري', themeDark: 'ليلي',
           pages: { ios: 'الدليل العام', ios17: 'iOS 17', ios18: 'iOS 18+', 'content-blocker': 'الحظر الأساسي', 'web-extension': 'إضافة الويب' }
         },
         hi: {
           back: 'ऐप पर वापस जाएँ', home: 'गाइड होम', support: 'सहायता',
           noticeTitle: 'Safari में सेटअप पूरा करें', noticeBody: 'iOS किसी दूसरे ऐप को आपकी ओर से एक्सटेंशन चालू करने की अनुमति नहीं देता। पूरा होने पर ब्लॉकर में लौटें और “फिर जाँचें” दबाएँ।',
-          fallbackTitle: '“एक्सटेंशन प्रबंधित करें” नहीं मिल रहा?', fallbackBody: 'सेटिंग्स → Safari → एक्सटेंशन खोलें, इस ऐप को खोजें और चालू करें। iOS संस्करण के अनुसार नाम अलग हो सकता है।', footer: 'ऐड ब्लॉकर · Safari सुरक्षा गाइड',
+          fallbackTitle: '“एक्सटेंशन प्रबंधित करें” नहीं मिल रहा?', fallbackBody: 'सेटिंग्स → Safari → एक्सटेंशन खोलें, इस ऐप को खोजें और चालू करें। iOS संस्करण के अनुसार नाम अलग हो सकता है।', footer: 'ऐड ब्लॉकर · Safari सुरक्षा गाइड', themeLight: 'लाइट', themeDark: 'डार्क',
           pages: { ios: 'सामान्य गाइड', ios17: 'iOS 17', ios18: 'iOS 18+', 'content-blocker': 'बेसिक ब्लॉकिंग', 'web-extension': 'वेब एक्सटेंशन' }
         },
         nl: {
           back: 'Terug naar app', home: 'Startpagina', support: 'Ondersteuning',
           noticeTitle: 'Voltooi de installatie in Safari', noticeBody: 'iOS kan extensies niet namens jou door een andere app inschakelen. Ga daarna terug naar de blokkering en tik op “Opnieuw controleren”.',
-          fallbackTitle: 'Kun je “Beheer extensies” niet vinden?', fallbackBody: 'Open Instellingen → Safari → Extensies, zoek deze app en schakel hem in. De naam kan per iOS-versie verschillen.', footer: 'Advertentieblokker · Safari-beschermingsgids',
+          fallbackTitle: 'Kun je “Beheer extensies” niet vinden?', fallbackBody: 'Open Instellingen → Safari → Extensies, zoek deze app en schakel hem in. De naam kan per iOS-versie verschillen.', footer: 'Advertentieblokker · Safari-beschermingsgids', themeLight: 'Licht', themeDark: 'Donker',
           pages: { ios: 'Algemene gids', ios17: 'iOS 17', ios18: 'iOS 18+', 'content-blocker': 'Basisblokkering', 'web-extension': 'Webextensie' }
         },
         tr: {
           back: 'Uygulamaya dön', home: 'Kılavuz ana sayfası', support: 'Destek',
           noticeTitle: 'Kurulumu Safari’de tamamlayın', noticeBody: 'iOS, başka bir uygulamanın uzantıları sizin yerinize etkinleştirmesine izin vermez. Bitince engelleyiciye dönüp “Tekrar kontrol et” seçeneğine dokunun.',
-          fallbackTitle: '“Uzantıları Yönet” seçeneğini bulamıyor musunuz?', fallbackBody: 'Ayarlar → Safari → Uzantılar bölümünü açın, bu uygulamayı bulun ve etkinleştirin. Menü adı iOS sürümüne göre değişebilir.', footer: 'Reklam engelleyici · Safari koruma kılavuzu',
+          fallbackTitle: '“Uzantıları Yönet” seçeneğini bulamıyor musunuz?', fallbackBody: 'Ayarlar → Safari → Uzantılar bölümünü açın, bu uygulamayı bulun ve etkinleştirin. Menü adı iOS sürümüne göre değişebilir.', footer: 'Reklam engelleyici · Safari koruma kılavuzu', themeLight: 'Açık', themeDark: 'Koyu',
           pages: { ios: 'Genel kılavuz', ios17: 'iOS 17', ios18: 'iOS 18+', 'content-blocker': 'Temel engelleme', 'web-extension': 'Web uzantısı' }
         },
         vi: {
           back: 'Quay lại ứng dụng', home: 'Trang chính', support: 'Hỗ trợ',
           noticeTitle: 'Hoàn tất thiết lập trong Safari', noticeBody: 'iOS không cho phép ứng dụng khác bật tiện ích thay bạn. Sau khi hoàn tất, quay lại trình chặn và nhấn “Kiểm tra lại”.',
-          fallbackTitle: 'Không tìm thấy “Quản lý tiện ích”?', fallbackBody: 'Mở Cài đặt → Safari → Tiện ích, tìm ứng dụng này và bật lên. Tên menu có thể khác tùy phiên bản iOS.', footer: 'Trình chặn quảng cáo · Hướng dẫn bảo vệ Safari',
+          fallbackTitle: 'Không tìm thấy “Quản lý tiện ích”?', fallbackBody: 'Mở Cài đặt → Safari → Tiện ích, tìm ứng dụng này và bật lên. Tên menu có thể khác tùy phiên bản iOS.', footer: 'Trình chặn quảng cáo · Hướng dẫn bảo vệ Safari', themeLight: 'Sáng', themeDark: 'Tối',
           pages: { ios: 'Hướng dẫn chung', ios17: 'iOS 17', ios18: 'iOS 18+', 'content-blocker': 'Chặn cơ bản', 'web-extension': 'Tiện ích web' }
         }
       }[language];
@@ -437,6 +627,8 @@
       document.querySelector('#fallback-body').textContent = copy.fallbackBody;
       document.querySelector('#done').textContent = doneCopy;
       document.querySelector('#footer-label').textContent = copy.footer;
+      document.querySelector('#theme-light').textContent = copy.themeLight || 'Light';
+      document.querySelector('#theme-dark').textContent = copy.themeDark || 'Dark';
       document.querySelectorAll('[data-i18n]').forEach((node) => { node.textContent = copy[node.dataset.i18n]; });
       document.querySelector('#language-select').value = language;
       document.querySelector('#step-progress').textContent = `${content.steps.length} ${stepProgressCopy} ${guideUpdatedAt}`;
@@ -465,7 +657,10 @@
           const visual = document.createElement('img');
           visual.className = 'step-visual';
           visual.loading = 'lazy';
-          visual.src = `guide_assets/step-${index + 1}-${['page-menu', 'extensions', 'protected'][index]}.png`;
+          const baseName = `step-${index + 1}-${['page-menu', 'extensions', 'protected'][index]}`;
+          visual.dataset.darkSrc = `guide_assets/${baseName}.png`;
+          visual.dataset.lightSrc = `guide_assets/${baseName}-light.png`;
+          visual.src = theme === 'dark' ? visual.dataset.darkSrc : visual.dataset.lightSrc;
           visual.alt = `${stepText(step[0], step[1], step[2])} illustration`;
           article.querySelector('div:last-child').appendChild(visual);
         }
@@ -486,8 +681,19 @@
         const next = new URL(location.href);
         next.searchParams.set('lang', event.target.value);
         next.searchParams.set('page', pageKey);
+        next.searchParams.set('theme', root.dataset.theme || theme);
         location.href = next.toString();
       });
+      document.querySelectorAll('[data-theme-option]').forEach((button) => {
+        button.addEventListener('click', () => {
+          const nextTheme = button.dataset.themeOption;
+          applyTheme(nextTheme);
+          const next = new URL(location.href);
+          next.searchParams.set('theme', nextTheme);
+          history.replaceState({}, '', next.toString());
+        });
+      });
+      applyTheme(theme);
     })();
   </script>
 </body>
